@@ -1,38 +1,65 @@
 https://dave356w.github.io/wheel-bias/
 # wheel-bias
 Roulette wheel bias tracker — mobile PWA
-Here's the strategy the code implements:
 
-## Detection: Where is the wheel running hot?
+## Theory
 
-The wheel's 38 pockets are split into **4 arcs** along physical wheel order. The split point for each half of the wheel is found by a weighted-density median — whichever pocket is the tipping point where cumulative hits reach 50% of that half's total.
+### Why arcs?
 
-All hit counting is **recency-weighted** with a 75-spin half-life (`spinWeight = 2^(-age/75)`), so recent spins count more than old ones. Each arc's observed rate is compared to its fair-wheel expected rate, and a z-score is computed using the effective sample size (accounting for the exponential weighting). An arc is declared **hot** only if it clears both a minimum bias threshold (5–8% depending on sample size) and a minimum z (1.10–1.55).
+A mechanically biased wheel doesn't favour a single pocket — friction, wear, and fret deformation distribute the elevation across a physically contiguous arc of adjacent pockets. Detecting a single-pocket elevation at 38:1 against background noise would require thousands of spins. Detecting an arc of 5–9 pockets elevated together requires far fewer because the signal-to-noise ratio scales with arc size.
 
-## Portfolio: What to bet?
+### Recency weighting
 
-Qualifying hot arcs feed a 3-layer portfolio builder:
-
-**Layer 1 — Inside Primaries** (up to 2 bets): Streets, six-lines, or corners whose pockets overlap heavily with the hot arc. Each candidate must pass:
-- Arc density gate (≥22% of the arc's pockets sit inside this bet for streets/corners, ≥30% for six-lines)
-- Precision gate (≥50% of the bet's own pockets are in the arc)
-- Hit-rate gate (observed weighted probability ≥ break-even × a sample-size multiplier)
-- Minimum 2-pocket overlap with the arc
-
-The second inside primary is only added if it covers ≥2 arc pockets not already in the first.
-
-**Layer 2 — Straight gap-fill**: Any hot-arc pockets not already covered by the inside primaries get straight-up chips (up to 9), sorted by recency-weighted heat. Only added if the group's observed probability beats break-even.
-
-**Layer 3 — Outside volume**: A dozen, column, or half-bet whose arc-slice hit rate (weighted probability of just the arc portion landing in this outside zone) beats the sample-adjusted minimum. Requires ≥33% arc density and ≥4 pocket overlap. Only one outside bet is added — the highest scorer.
-
-## Scoring
-
-Each zone is scored as:
+Raw spin counts treat a result from 300 spins ago the same as one from 5 spins ago. Mechanical wheel conditions drift. All hit-rate calculations use exponentially decaying weights:
 
 ```
-arcDensity × arc.bias × arc.z × (payout/35 + 0.5) + pocketHeat × 0.001
+weight(age) = 2^(-age / 75)
 ```
 
-Higher payout bets get a multiplier bonus (the `payout/35 + 0.5` term). The `pocketHeat` tiebreaker favours zones whose specific arc pockets have been hit recently, not just the arc overall. The final score is then edge-adjusted: `score × (1 + max(edge, 0))`.
+A spin 75 ago counts half as much as the most recent one. The effective sample size (`nEff`) is computed from the sum of weights squared over sum-squared, giving a statistically valid denominator for z-score calculations despite the non-uniform weighting.
 
-The result is a ranked, non-redundant bet ticket list — each subsequent bet tracked for how many new arc pockets it adds beyond what's already covered.
+### Circular window scan
+
+The 38-pocket wheel is treated as a circular frequency string. The detector tests every contiguous window of size 3–9 at every starting position — 38 × 7 = **266 candidate windows** per evaluation. For each window:
+
+1. Compute the recency-weighted observed hit rate `p_actual`
+2. Compare to the fair-wheel expected rate `p_expected = size / 38`
+3. Compute z-score using `nEff`:
+
+```
+SE  = sqrt(p_expected × (1 - p_expected) / nEff)
+z   = (p_actual - p_expected) / SE
+```
+
+4. Score each window as `z × bias%`
+5. Select the highest-scoring window as the **primary arc**
+
+After the primary arc is found, its pockets are masked and the scan repeats on the unmasked remainder to find an independent **secondary arc**.
+
+### False positive correction
+
+Scanning 266 windows post-hoc inflates apparent signal — the best window out of 266 random trials will look elevated even on a perfectly fair wheel. Gates are calibrated empirically:
+
+| Spin count | Min bias | Min z | Approx FP rate |
+|-----------|---------|-------|----------------|
+| < 75      | 22%     | 3.0   | ~3%            |
+| 75–149    | 15%     | 3.0   | ~1%            |
+| 150+      | 12%     | 3.0   | ~3.5%          |
+
+The z ≥ 3.0 threshold is constant. A single-test z of 3.0 corresponds to p < 0.003, which stays below 5% false positives even after the scan's multiple-comparison inflation.
+
+### Portfolio — straight arc cover
+
+Once a qualifying arc is confirmed, the play is one straight-up chip on each arc pocket at 35:1. Every unit staked goes onto a pocket with a confirmed bias reading, undiluted by numbers outside the arc.
+
+Pockets are ranked by recency-weighted heat and capped at 9 chips, then displayed in physical wheel order for easy placement.
+
+The play only fires if:
+- Observed weighted probability ≥ break-even hit rate × a sample-size multiplier
+- Portfolio edge > 0: `E = (36 × p_arc_pockets / stake) − 1 > 0`
+
+If neither condition is met the app reports the arc but shows no play — the signal is present but not yet strong enough to bet with positive expectation.
+
+### Storage
+
+Spin log persisted to `localStorage` key `wheelBias.spinLog.v9`. Each major schema version uses a new key to avoid loading stale data.
