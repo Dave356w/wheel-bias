@@ -127,7 +127,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .wo-pill.black{background:#1a1a1a;color:#888;border:1px solid #2a2a2a;}
 .wo-pill.green{background:var(--green-dim);color:var(--green);}
 
-/* TABLE — portrait-fit, no horizontal scroll */
+/* TABLE — portrait-fit, sized to match wheel view cells */
 .table-panel{padding:12px;}
 .table-status{font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius);padding:8px 12px;margin-bottom:10px;line-height:1.5;}
 .table-status b{color:var(--amber);}
@@ -143,8 +143,8 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .pb-halves{grid-template-columns:repeat(6,1fr);}
 .pcell{
   border-radius:5px;display:flex;align-items:center;justify-content:center;
-  font-family:'DM Mono',monospace;font-size:clamp(14px,4vw,20px);font-weight:700;
-  border:1px solid rgba(255,255,255,.2);aspect-ratio:1.2;
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
+  border:1px solid rgba(255,255,255,.2);aspect-ratio:1;min-height:44px;
 }
 .pcell.red{background:#7e1515;color:#ffb6b6;}
 .pcell.black{background:#151515;color:#ccc;}
@@ -153,9 +153,9 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .pob{
   border-radius:5px;border:1px solid rgba(255,255,255,.15);
   display:flex;align-items:center;justify-content:center;
-  font-family:'DM Mono',monospace;font-size:clamp(9px,2.5vw,11px);
+  font-family:'DM Mono',monospace;font-size:10px;
   color:rgba(255,255,255,.4);background:rgba(255,255,255,.04);
-  text-align:center;line-height:1.2;padding:7px 3px;
+  text-align:center;line-height:1.2;padding:7px 3px;min-height:44px;
 }
 
 /* Pocket chips strip below board */
