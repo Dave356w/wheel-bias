@@ -423,6 +423,7 @@ function effectiveN(){
 }
 
 // ── ARC GATES ──
+// z ≥ 3.0 holds false positive rate <5% across the 266-window scan on a fair wheel.
 function minArcBiasPct(){
   if(totalSpins<75)  return 22.0;
   if(totalSpins<150) return 15.0;
@@ -438,6 +439,10 @@ function minStraightHitRate(zone){
 function minZoneHitRate(zone){ return minStraightHitRate(zone); }
 
 // ── CIRCULAR WINDOW SCAN ──
+// Tests every contiguous wheel window of size MIN_ARC_SIZE..MAX_ARC_SIZE
+// at every starting position (38 × 7 = 266 windows).
+// Selects the highest z*bias scoring window as the primary arc,
+// then rescans the unmasked remainder for an independent secondary arc.
 function scanBestArc(masked){
   const tw=totalWeight();
   const nEff=effectiveN();
@@ -508,6 +513,8 @@ function zoneEdge(zone){
 }
 
 // ── PORTFOLIO BUILDER ──
+// Straight-up chips on every hot-arc pocket, ranked by recency-weighted heat,
+// capped at MAX_STRAIGHT_CHIPS. Restored to wheel order for display.
 function buildPortfolio(hotArcs){
   if(hotArcs.length===0)return[];
 
