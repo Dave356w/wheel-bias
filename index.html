@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Wheel">
 <meta name="theme-color" content="#0a0a0a">
-<title>Wheel</title>
+<title>Wheel Bias</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -31,6 +31,15 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .spin-badge{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);background:var(--surface2);padding:4px 10px;border-radius:20px;border:1px solid var(--border);}
 .btn-reset{background:transparent;border:1px solid var(--border);color:var(--text3);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;padding:6px 12px;border-radius:20px;cursor:pointer;}
 .btn-reset:active{opacity:.6;}
+
+/* MODE TOGGLE */
+.mode-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;background:var(--surface2);border-bottom:1px solid var(--border);}
+.mode-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:.06em;}
+.mode-toggle{display:flex;border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.mode-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;background:transparent;color:var(--text3);border:none;cursor:pointer;letter-spacing:.03em;transition:background .15s,color .15s;}
+.mode-btn.active{background:var(--amber);color:#0a0a0a;}
+.mode-btn:active{opacity:.7;}
+.mode-hint{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);padding:4px 20px 6px;background:var(--surface2);border-bottom:1px solid var(--border);line-height:1.4;}
 
 .tabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:calc(var(--safe-top) + 57px);z-index:99;}
 .tab{flex:1;padding:12px 4px;font-size:12px;font-family:'DM Mono',monospace;color:var(--text3);text-align:center;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:.03em;}
@@ -93,6 +102,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .best-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--red-dim);color:var(--hot);border:1px solid rgba(255,118,117,.2);}
 .payout-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:var(--amber-dim);color:var(--amber);border:1px solid rgba(253,203,110,.2);}
 .edge-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:var(--green-dim);color:var(--green);border:1px solid rgba(0,184,148,.2);}
+.mode-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:rgba(162,155,254,.12);color:var(--purple);border:1px solid rgba(162,155,254,.2);}
 
 .play-meta{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
 .cov-track{display:inline-block;width:48px;height:3px;background:rgba(255,255,255,.08);border-radius:2px;position:relative;overflow:hidden;vertical-align:middle;flex-shrink:0;}
@@ -127,60 +137,75 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .wo-pill.black{background:#1a1a1a;color:#888;border:1px solid #2a2a2a;}
 .wo-pill.green{background:var(--green-dim);color:var(--green);}
 
-/* TABLE — portrait-fit, sized to match wheel view cells */
-.table-panel{padding:12px;}
-.table-status{font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius);padding:8px 12px;margin-bottom:10px;line-height:1.5;}
-.table-status b{color:var(--amber);}
-.table-status.no-arc{border-left-color:var(--text3);color:var(--text3);}
+/* TABLE — landscape layout, single screen */
+.table-panel{padding:8px 10px;}
 
-/* Portrait roulette board: 0/00 at top, then 12 rows × 3 cols, then outside bets */
-.portrait-board{width:100%;display:flex;flex-direction:column;gap:3px;margin-bottom:12px;}
-.pb-row{display:grid;gap:3px;}
-.pb-zeros{grid-template-columns:1fr 1fr;}
-.pb-numbers{grid-template-columns:repeat(3,1fr);}
-.pb-cols{grid-template-columns:repeat(3,1fr);}
-.pb-dozens{grid-template-columns:repeat(3,1fr);}
-.pb-halves{grid-template-columns:repeat(6,1fr);}
-.pcell{
-  border-radius:5px;display:flex;align-items:center;justify-content:center;
+/* Compact one-line status bar */
+.tbl-status{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);
+  background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);
+  border-radius:var(--radius);padding:6px 10px;margin-bottom:6px;line-height:1;}
+.tbl-status b{color:var(--amber);}
+.tbl-status.no-arc{border-left-color:var(--text3);color:var(--text3);}
+.tbl-status-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.tbl-ev{font-size:13px;font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;color:var(--green);}
+.tbl-ev.neg{color:var(--text3);}
+
+/* Pocket pill row — tight, below status */
+.tbl-pockets{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;min-height:0;}
+.tbl-pocket{display:flex;align-items:center;justify-content:center;
+  width:30px;height:24px;border-radius:5px;
   font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
-  border:1px solid rgba(255,255,255,.2);aspect-ratio:1;min-height:44px;
-}
-.pcell.red{background:#7e1515;color:#ffb6b6;}
-.pcell.black{background:#151515;color:#ccc;}
-.pcell.green{background:#075a38;color:#67e6c0;}
-.pcell.bet-on{box-shadow:0 0 0 2.5px var(--amber);background-color:rgba(253,203,110,.22);}
-.pob{
-  border-radius:5px;border:1px solid rgba(255,255,255,.15);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:rgba(255,255,255,.4);background:rgba(255,255,255,.04);
-  text-align:center;line-height:1.2;padding:7px 3px;min-height:44px;
-}
+  border:1.5px solid transparent;}
+.tbl-pocket.red{background:#5a0f0f;color:#ffb6b6;border-color:var(--amber);}
+.tbl-pocket.black{background:#141414;color:#ddd;border-color:var(--amber);}
+.tbl-pocket.green{background:#053d26;color:#67e6c0;border-color:var(--amber);}
 
-/* Pocket chips strip below board */
-.pocket-strip{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.pchip{
-  width:44px;height:44px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.02em;
-  border:2px solid transparent;flex-shrink:0;
+/* Landscape roulette board */
+.landscape-board{
+  display:grid;
+  /* col 0 = zeros (narrow), cols 1-12 = numbers, col 13 = 2:1 labels */
+  grid-template-columns:1fr repeat(12,1fr) 0.7fr;
+  grid-template-rows:repeat(3,1fr) 0.6fr 0.6fr;
+  gap:2px;
+  width:100%;
 }
-.pchip.red{background:#7e1515;color:#ffb6b6;border-color:#a01a1a;}
-.pchip.black{background:#1a1a1a;color:#ccc;border-color:#333;}
-.pchip.green{background:#075a38;color:#67e6c0;border-color:#0a6644;}
-.pchip.arc{border-color:var(--amber);box-shadow:0 0 8px rgba(253,203,110,.3);}
+/* Each number cell */
+.lc{
+  display:flex;align-items:center;justify-content:center;
+  border-radius:3px;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:500;
+  border:1px solid rgba(255,255,255,.12);
+  height:28px;
+  position:relative;
+}
+.lc.red{background:#5a0f0f;color:#ffb6b6;}
+.lc.black{background:#0f0f0f;color:#ccc;}
+.lc.green{background:#053d26;color:#67e6c0;}
+.lc.bet-on{box-shadow:inset 0 0 0 2px var(--amber);background-color:rgba(253,203,110,.2);color:#fff;}
+.lc.bet-on.red{color:#fff;}
+.lc.bet-on.black{color:#fff;}
+/* zeros span 3 rows */
+.lc.zero-cell{grid-row:span 3;height:auto;font-size:11px;}
+/* outside bet cells */
+.lob{
+  display:flex;align-items:center;justify-content:center;
+  border-radius:3px;border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.35);
+  height:28px;text-align:center;line-height:1.2;
+}
+/* dozens row spans cols 1-4, 5-8, 9-12 */
+.lob-dozen{grid-row:4;}
+/* halves row spans pairs of cols */
+.lob-half{grid-row:5;}
+/* 2:1 col labels */
+.lob-col{grid-column:14;font-size:9px;}
 
-/* Recent history as table-layout grid */
 .hist-table-wrap{margin-bottom:16px;}
 .hist-table-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
 .hist-table{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;}
-.hist-cell{
-  height:40px;border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:20px;
-  border:1px solid transparent;position:relative;
-}
+.hist-cell{height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;border:1px solid transparent;position:relative;}
 .hist-cell.red{background:#4a0d0d;color:#ffb6b6;border-color:#7e1515;}
 .hist-cell.black{background:#111;color:#aaa;border-color:#2a2a2a;}
 .hist-cell.green{background:#042b1e;color:#67e6c0;border-color:#075a38;}
@@ -202,6 +227,12 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .bottom-safe{height:calc(var(--safe-bottom) + 12px);}
 .section-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
 
+/* Confidence meter */
+.conf-bar-wrap{margin-bottom:14px;}
+.conf-bar-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;display:flex;justify-content:space-between;}
+.conf-bar-track{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.conf-bar-fill{height:100%;border-radius:3px;transition:width .4s ease;}
+
 @media(min-width:640px){
   .wheel-grid{grid-template-columns:repeat(13,1fr);}
   .keypad,.num-display{max-width:380px;margin-left:auto;margin-right:auto;}
@@ -220,6 +251,16 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
     <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
   </div>
 </div>
+
+<!-- Session mode toggle -->
+<div class="mode-bar">
+  <span class="mode-label">Session mode</span>
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="modeDealer" onclick="setMode('dealer')">Dealer Trend</button>
+    <button class="mode-btn" id="modeBias" onclick="setMode('bias')">Wheel Bias</button>
+  </div>
+</div>
+<div class="mode-hint" id="modeHint">Dealer Trend — optimised for 20–60 spin sessions. Half-life 30 · z≥2.1 · arc 3–6 pockets. More sensitive, higher false-positive rate (~15%).</div>
 
 <div class="tabs">
   <button class="tab active" onclick="setTab('log')">Log</button>
@@ -255,7 +296,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 
   <div class="sim-card">
     <div class="sim-title"><span>Simulator</span><span>test only</span></div>
-    <div class="sim-desc">Fair = uniform random wheel. Bias = 42% of simulated spins drawn exclusively from one random 9-pocket arc (true arc hit rate ~56% since the other 58% also have a chance of landing in the arc).</div>
+    <div class="sim-desc" id="simDesc">Fair = uniform random wheel. Bias = dealer-lean arc (35% of spins from a random 5-pocket arc, matching a realistic dealer trend). Sim adapts to current session mode.</div>
     <div class="sim-row">
       <button class="sim-btn fair" onclick="simulateFairSpins(20)">Fair +20</button>
       <button class="sim-btn fair" onclick="simulateFairSpins(50)">Fair +50</button>
@@ -268,6 +309,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
     </div>
     <div class="sim-status" id="simStatus">Simulation appends spins to the same log. Use Reset to clear test runs.</div>
   </div>
+
   <div class="hist-table-wrap">
     <div class="hist-table-label">Last 20 results</div>
     <div class="hist-table" id="histTable"></div>
@@ -287,7 +329,8 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 <div class="plays-panel">
   <div id="arcSummary"></div>
   <div id="recencyNote"></div>
-  <div id="guidePanel"><div class="no-signal">Log at least 40 spins<br>to detect arc bias.</div></div>
+  <div id="confBarWrap"></div>
+  <div id="guidePanel"><div class="no-signal">Log at least 15 spins<br>to detect arc bias.</div></div>
 </div>
 <div class="bottom-safe"></div>
 </div>
@@ -296,8 +339,8 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 <div class="panel" id="panel-table">
 <div class="table-panel">
   <div id="tableSummary"></div>
-  <div id="tableBoardWrap"></div>
-  <div id="tableTickets"><div class="no-signal">Log at least 40 spins<br>to show table placements.</div></div>
+  <div id="tablePockets"></div>
+  <div id="tableBoardWrap"><div class="no-signal">Log at least 15 spins<br>to show table placements.</div></div>
 </div>
 <div class="bottom-safe"></div>
 </div>
@@ -327,23 +370,58 @@ const ALL=['00',0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 const VALID_NUMS=new Set(ALL.map(String));
 const WHEEL=[0,28,9,26,30,11,7,20,32,17,5,22,34,15,3,24,36,13,1,'00',27,10,25,29,12,8,19,31,18,6,21,33,16,4,23,35,14,2];
 
-// Signal tuning
-const MIN_SPINS_FOR_PLAYS=20;
-const HALFLIFE=75;
-const MIN_ARC_SIZE=3;
-const MAX_ARC_SIZE=9;
-const MAX_STRAIGHT_CHIPS=9;
-const MIN_STRAIGHT_CHIPS=1;
-const SIM_BIAS_ARC_SIZE=9;
-const SIM_BIAS_ARC_RATE=0.42;
-const STORAGE_KEY='wheelBias.spinLog.v9';
+// ── MODE PROFILES ──
+const MODES={
+  dealer:{
+    label:'Dealer Trend',
+    hint:'Dealer Trend — optimised for 20–60 spin sessions. Half-life 30 · z≥2.1 · arc 3–6 pockets. More sensitive, higher false-positive rate (~15%).',
+    HALFLIFE:30,
+    MIN_SPINS_FOR_PLAYS:15,
+    MIN_ARC_SIZE:3,
+    MAX_ARC_SIZE:6,
+    MAX_STRAIGHT_CHIPS:6,
+    MIN_STRAIGHT_CHIPS:1,
+    SIM_BIAS_ARC_SIZE:5,
+    SIM_BIAS_ARC_RATE:0.35,
+    minArcZ:()=>2.1,
+    minArcBiasPct:(n)=>{ if(n<40)return 16; if(n<100)return 13; return 11; },
+  },
+  bias:{
+    label:'Wheel Bias',
+    hint:'Wheel Bias — long-run mechanical bias detection. Half-life 75 · z≥3.0 · arc 3–9 pockets. Conservative, low false-positive rate (~5%). Best at 150+ spins.',
+    HALFLIFE:75,
+    MIN_SPINS_FOR_PLAYS:20,
+    MIN_ARC_SIZE:3,
+    MAX_ARC_SIZE:9,
+    MAX_STRAIGHT_CHIPS:9,
+    MIN_STRAIGHT_CHIPS:1,
+    SIM_BIAS_ARC_SIZE:9,
+    SIM_BIAS_ARC_RATE:0.42,
+    minArcZ:()=>3.0,
+    minArcBiasPct:(n)=>{ if(n<75)return 22; if(n<150)return 15; return 12; },
+  }
+};
 
-// State
+const STORAGE_KEY='wheelBias.spinLog.v9';
+const STORAGE_MODE_KEY='wheelBias.mode.v1';
+
 let spinLog=[];
 let totalSpins=0;
 let currentInput='';
 let activeTab='log';
 let lastSimStatus='';
+let currentMode='dealer';
+
+function M(){ return MODES[currentMode]; }
+
+function setMode(m){
+  currentMode=m;
+  try{ localStorage.setItem(STORAGE_MODE_KEY,m); }catch(e){}
+  document.getElementById('modeDealer').classList.toggle('active',m==='dealer');
+  document.getElementById('modeBias').classList.toggle('active',m==='bias');
+  document.getElementById('modeHint').textContent=M().hint;
+  updateAll();
+}
 
 function numColor(n){
   if(n==='00'||n===0)return'green';
@@ -373,6 +451,8 @@ function saveState(){
 }
 function loadState(){
   try{
+    const rawMode=localStorage.getItem(STORAGE_MODE_KEY);
+    if(rawMode&&MODES[rawMode])currentMode=rawMode;
     const raw=localStorage.getItem(STORAGE_KEY);
     if(!raw)return;
     const parsed=JSON.parse(raw);
@@ -393,21 +473,37 @@ function restoreHitMarkers(){
 }
 
 // ── RECENCY WEIGHTING ──
-function spinWeight(age){ return Math.pow(2, -age/HALFLIFE); }
+function spinWeight(age){ return Math.pow(2,-age/M().HALFLIFE); }
 
-function weightedHits(nums){
-  const numSet=new Set(nums.map(String));
-  let w=0;
+// Precompute weighted hits per pocket — O(N) once per render
+function buildWeightMap(){
+  const map={};
+  ALL.forEach(n=>map[String(n)]=0);
   spinLog.forEach((n,logIdx)=>{
     const age=totalSpins-1-logIdx;
-    if(numSet.has(String(n)))w+=spinWeight(age);
+    map[String(n)]+=spinWeight(age);
   });
-  return w;
+  return map;
+}
+
+let _wmap=null;
+let _wmapSpins=-1;
+let _wmapMode='';
+function cachedWeightMap(){
+  if(_wmapSpins!==totalSpins||_wmapMode!==currentMode){
+    _wmap=buildWeightMap();
+    _wmapSpins=totalSpins;
+    _wmapMode=currentMode;
+  }
+  return _wmap;
+}
+
+function weightedHits(nums){
+  const wm=cachedWeightMap();
+  return nums.reduce((s,n)=>s+(wm[String(n)]||0),0);
 }
 function totalWeight(){
-  let w=0;
-  for(let i=0;i<totalSpins;i++)w+=spinWeight(totalSpins-1-i);
-  return w;
+  return ALL.reduce((s,n)=>s+(cachedWeightMap()[String(n)]||0),0);
 }
 function weightedPct(nums){
   const tw=totalWeight();
@@ -423,30 +519,25 @@ function effectiveN(){
 }
 
 // ── ARC GATES ──
-// z ≥ 3.0 holds false positive rate <5% across the 266-window scan on a fair wheel.
-function minArcBiasPct(){
-  if(totalSpins<75)  return 22.0;
-  if(totalSpins<150) return 15.0;
-  return 12.0;
-}
-function minArcZ(){ return 3.0; }
+function minArcBiasPct(){ return M().minArcBiasPct(totalSpins); }
+function minArcZ(){ return M().minArcZ(); }
 
 function minStraightHitRate(zone){
   const breakEven=breakEvenHitRate(zone);
-  const multiplier=totalSpins<40?1.10:totalSpins<75?1.06:1.03;
+  // In dealer-trend mode we require less cushion above break-even to stay responsive
+  const multiplier=currentMode==='dealer'
+    ?(totalSpins<30?1.06:1.02)
+    :(totalSpins<40?1.10:totalSpins<75?1.06:1.03);
   return Math.min(0.95,breakEven*multiplier);
 }
 function minZoneHitRate(zone){ return minStraightHitRate(zone); }
 
 // ── CIRCULAR WINDOW SCAN ──
-// Tests every contiguous wheel window of size MIN_ARC_SIZE..MAX_ARC_SIZE
-// at every starting position (38 × 7 = 266 windows).
-// Selects the highest z*bias scoring window as the primary arc,
-// then rescans the unmasked remainder for an independent secondary arc.
 function scanBestArc(masked){
   const tw=totalWeight();
   const nEff=effectiveN();
   if(tw===0||nEff===0)return null;
+  const {MIN_ARC_SIZE,MAX_ARC_SIZE}=M();
 
   let best=null, bestScore=-Infinity;
 
@@ -501,6 +592,33 @@ function getHotArcs(){
   return arcs;
 }
 
+// ── CONFIDENCE SCORE ──
+// Returns 0–100 combining z-score above gate and bias above gate.
+function arcConfidence(arc){
+  const zGate=minArcZ();
+  const bGate=minArcBiasPct();
+  if(!arc||arc.z<zGate||arc.bias<bGate)return 0;
+  // z contribution: scale 0–1 from gate to gate+4
+  const zScore=Math.min(1,(arc.z-zGate)/4);
+  // bias contribution: scale 0–1 from gate to gate+20
+  const bScore=Math.min(1,(arc.bias-bGate)/20);
+  return Math.round((zScore*0.6+bScore*0.4)*100);
+}
+
+function renderConfBar(arcs){
+  const el=document.getElementById('confBarWrap');
+  if(!el)return;
+  if(!arcs||arcs.length===0){el.innerHTML='';return;}
+  const arc=arcs[0];
+  const conf=arcConfidence(arc);
+  const color=conf<35?'#888':conf<65?'var(--amber)':'var(--green)';
+  const label=conf<35?'weak':conf<65?'moderate':'strong';
+  el.innerHTML=`<div class="conf-bar-wrap">
+    <div class="conf-bar-label"><span>Signal confidence</span><span style="color:${color}">${conf}% — ${label}</span></div>
+    <div class="conf-bar-track"><div class="conf-bar-fill" style="width:${conf}%;background:${color};"></div></div>
+  </div>`;
+}
+
 // ── BET CATALOG + EDGE ──
 function rangeLabel(nums){ return nums.map(String).join('/'); }
 function betPayoutUnits(bet){ return bet.payoutUnits??Number(String(bet.payout).split(':')[0]); }
@@ -513,10 +631,9 @@ function zoneEdge(zone){
 }
 
 // ── PORTFOLIO BUILDER ──
-// Straight-up chips on every hot-arc pocket, ranked by recency-weighted heat,
-// capped at MAX_STRAIGHT_CHIPS. Restored to wheel order for display.
 function buildPortfolio(hotArcs){
   if(hotArcs.length===0)return[];
+  const {MAX_STRAIGHT_CHIPS,MIN_STRAIGHT_CHIPS}=M();
 
   const arcPocketSet=new Set();
   hotArcs.forEach(arc=>arc.nums.forEach(n=>arcPocketSet.add(String(n))));
@@ -575,11 +692,13 @@ function renderPlays(){
   const arcSummaryEl=document.getElementById('arcSummary');
   const recencyEl=document.getElementById('recencyNote');
   const el=document.getElementById('guidePanel');
+  const {MIN_SPINS_FOR_PLAYS,HALFLIFE}=M();
 
   if(totalSpins<MIN_SPINS_FOR_PLAYS){
     highlightHotArc([]);
     arcSummaryEl.innerHTML='';
     recencyEl.innerHTML='';
+    document.getElementById('confBarWrap').innerHTML='';
     el.innerHTML=`<div class="no-signal">Log at least ${MIN_SPINS_FOR_PLAYS} spins<br>to detect arc bias.</div>`;
     return;
   }
@@ -587,12 +706,17 @@ function renderPlays(){
   const hotArcs=getHotArcs();
   highlightHotArc(hotArcs);
 
-  const gateText=`266-window circular scan · bias ≥ ${minArcBiasPct().toFixed(1)}% · z ≥ ${minArcZ().toFixed(2)} (scan-corrected) · 1u/pocket 35:1 · edge ≥ 0`;
-  recencyEl.innerHTML=`<div class="recency-note">↻ recency weighted · ${HALFLIFE}-spin half-life · ${totalSpins} spins · ${gateText}</div>`;
+  const modeStr=currentMode==='dealer'
+    ?`Dealer Trend mode · ${M().MIN_ARC_SIZE}–${M().MAX_ARC_SIZE}p arcs · bias ≥ ${minArcBiasPct().toFixed(1)}% · z ≥ ${minArcZ().toFixed(2)}`
+    :`Wheel Bias mode · ${M().MIN_ARC_SIZE}–${M().MAX_ARC_SIZE}p arcs · bias ≥ ${minArcBiasPct().toFixed(1)}% · z ≥ ${minArcZ().toFixed(2)}`;
+
+  recencyEl.innerHTML=`<div class="recency-note">↻ ${HALFLIFE}-spin half-life · eff N ${effectiveN().toFixed(0)} / ${totalSpins} raw · ${modeStr}</div>`;
+
+  renderConfBar(hotArcs);
 
   if(hotArcs.length===0){
     arcSummaryEl.innerHTML='';
-    el.innerHTML='<div class="no-signal">No qualified hot arcs detected.<br>Keep logging spins.</div>';
+    el.innerHTML='<div class="no-signal">No qualified arc detected.<br>Keep logging spins.</div>';
     return;
   }
 
@@ -602,11 +726,12 @@ function renderPlays(){
   const portfolio=buildPortfolio(hotArcs);
 
   if(portfolio.length===0){
-    el.innerHTML='<div class="no-signal">Hot arc found, but no play<br>clears the hit-rate and coverage filters.</div>';
+    el.innerHTML='<div class="no-signal">Arc found, but no play<br>clears the edge gate.</div>';
     return;
   }
 
   const finalCoverage=portfolio[portfolio.length-1].coverageAfter;
+  const modeLabel=currentMode==='dealer'?'Dealer Trend':'Wheel Bias';
   let html=`<div class="portfolio-header">
     <span>Portfolio · ${portfolio.length} bet${portfolio.length>1?'s':''} · Straight Arc Cover</span>
     <span class="coverage-total">${finalCoverage}% arc covered</span>
@@ -623,7 +748,8 @@ function renderPlays(){
           ${p.name}
           <span class="payout-badge">${p.payout}</span>
           <span class="payout-badge">${stake}u</span>
-          <span class="edge-badge">edge ${formatSignedPct(p.edge,1)}</span>
+          <span class="edge-badge">EV ${formatSignedPct(p.edge,1)}</span>
+          <span class="mode-badge">${modeLabel}</span>
         </div>
         <div class="play-meta">
           <span class="cov-track"><span class="cov-fill" style="width:${covPx}px;background:var(--green);"></span></span>
@@ -633,7 +759,7 @@ function renderPlays(){
       </div>
       <div class="play-right">
         <div class="play-score">${(p.edge*100).toFixed(0)}%</div>
-        <div class="play-score-label">edge</div>
+        <div class="play-score-label">EV</div>
       </div>
     </div>`;
   });
@@ -646,83 +772,118 @@ function escapeHtml(v){
 }
 
 function currentSignal(){
+  const {MIN_SPINS_FOR_PLAYS}=M();
   if(totalSpins<MIN_SPINS_FOR_PLAYS)return{status:'need_spins',hotArcs:[],portfolio:[]};
   const hotArcs=getHotArcs();
   const portfolio=hotArcs.length?buildPortfolio(hotArcs):[];
   return{status:'ok',hotArcs,portfolio};
 }
 
-function renderRouletteBoard(betNums){
+// Landscape board: 3 rows of 12 (row1=3,6,9…36 / row2=2,5,8…35 / row3=1,4,7…34)
+// matching the physical American table orientation.
+// Grid: col0=zeros(span3rows), cols1-12=numbers, col13=2:1, rows4-5=dozens+halves
+function renderLandscapeBoard(betNums){
   const bet=betNums||new Set();
-  function pc(n){
+  function lc(n,extraClass){
     const on=bet.has(String(n));
-    return `<div class="pcell ${numColor(n)}${on?' bet-on':''}">${escapeHtml(n)}</div>`;
+    return `<div class="lc ${numColor(n)}${on?' bet-on':''}${extraClass?' '+extraClass:''}">${escapeHtml(n)}</div>`;
   }
-  function pob(label){ return `<div class="pob">${label}</div>`; }
+  function lob(label,style){ return `<div class="lob"${style?' style="'+style+'"':''}>${label}</div>`; }
 
-  // 12 rows of 3: 1,2,3 / 4,5,6 / … / 34,35,36
-  let numCells='';
-  for(let r=0;r<12;r++){
-    const b=r*3+1;
-    numCells+=pc(b)+pc(b+1)+pc(b+2);
-  }
+  // Row 1: 3,6,9,12,15,18,21,24,27,30,33,36 (top row on real table)
+  // Row 2: 2,5,8,11,14,17,20,23,26,29,32,35
+  // Row 3: 1,4,7,10,13,16,19,22,25,28,31,34
+  const row1=[3,6,9,12,15,18,21,24,27,30,33,36];
+  const row2=[2,5,8,11,14,17,20,23,26,29,32,35];
+  const row3=[1,4,7,10,13,16,19,22,25,28,31,34];
 
-  return `<div class="portrait-board">
-    <div class="pb-row pb-zeros">${pc(0)}${pc('00')}</div>
-    <div class="pb-row pb-numbers">${numCells}</div>
-    <div class="pb-row pb-cols">${pob('2:1<br>Col 1')}${pob('2:1<br>Col 2')}${pob('2:1<br>Col 3')}</div>
-    <div class="pb-row pb-dozens">${pob('1st 12<br>1–12')}${pob('2nd 12<br>13–24')}${pob('3rd 12<br>25–36')}</div>
-    <div class="pb-row pb-halves">${pob('1–18')}${pob('Even')}${pob('Red')}${pob('Black')}${pob('Odd')}${pob('19–36')}</div>
-  </div>`;
+  let html='<div class="landscape-board">';
+
+  // Zeros: col 1, rows 1-3 (span)
+  html+=`<div class="lc green zero-cell" style="grid-column:1;grid-row:1/4;">0<br>00</div>`;
+
+  // Number rows (cols 2-13)
+  row1.forEach((n,i)=>{ html+=`<div class="lc ${numColor(n)}${bet.has(String(n))?' bet-on':''}" style="grid-column:${i+2};grid-row:1;">${n}</div>`; });
+  row2.forEach((n,i)=>{ html+=`<div class="lc ${numColor(n)}${bet.has(String(n))?' bet-on':''}" style="grid-column:${i+2};grid-row:2;">${n}</div>`; });
+  row3.forEach((n,i)=>{ html+=`<div class="lc ${numColor(n)}${bet.has(String(n))?' bet-on':''}" style="grid-column:${i+2};grid-row:3;">${n}</div>`; });
+
+  // 2:1 labels (col 14, rows 1-3)
+  html+=`<div class="lob" style="grid-column:14;grid-row:1;">2:1</div>`;
+  html+=`<div class="lob" style="grid-column:14;grid-row:2;">2:1</div>`;
+  html+=`<div class="lob" style="grid-column:14;grid-row:3;">2:1</div>`;
+
+  // Dozens row (row 4, cols 2-5, 6-9, 10-13)
+  html+=`<div class="lob" style="grid-column:2/6;grid-row:4;">1st 12</div>`;
+  html+=`<div class="lob" style="grid-column:6/10;grid-row:4;">2nd 12</div>`;
+  html+=`<div class="lob" style="grid-column:10/14;grid-row:4;">3rd 12</div>`;
+  html+=`<div class="lob" style="grid-column:14;grid-row:4;font-size:8px;"></div>`;
+
+  // Halves row (row 5, 6 equal cells across cols 2-13)
+  const halves=['1–18','Even','Red','Black','Odd','19–36'];
+  halves.forEach((label,i)=>{
+    const c1=2+i*2, c2=c1+2;
+    html+=`<div class="lob" style="grid-column:${c1}/${c2};grid-row:5;">${label}</div>`;
+  });
+  html+=`<div class="lob" style="grid-column:14;grid-row:5;"></div>`;
+
+  html+='</div>';
+  return html;
 }
 
 function renderTable(){
   const summaryEl=document.getElementById('tableSummary');
+  const pocketsEl=document.getElementById('tablePockets');
   const boardEl=document.getElementById('tableBoardWrap');
-  const ticketsEl=document.getElementById('tableTickets');
-  if(!summaryEl||!boardEl||!ticketsEl)return;
+  if(!summaryEl||!boardEl||!pocketsEl)return;
+  const {MIN_SPINS_FOR_PLAYS}=M();
 
   if(totalSpins<MIN_SPINS_FOR_PLAYS){
     summaryEl.innerHTML='';
-    boardEl.innerHTML='';
-    ticketsEl.innerHTML=`<div class="no-signal">Log at least ${MIN_SPINS_FOR_PLAYS} spins<br>to show table placements.</div>`;
+    pocketsEl.innerHTML='';
+    boardEl.innerHTML=`<div class="no-signal">Log at least ${MIN_SPINS_FOR_PLAYS} spins<br>to show table placements.</div>`;
     return;
   }
 
   const {hotArcs,portfolio}=currentSignal();
 
   if(hotArcs.length===0){
-    summaryEl.innerHTML='<div class="table-status no-arc">No hot arc detected — keep logging.</div>';
-    boardEl.innerHTML=renderRouletteBoard(new Set());
-    ticketsEl.innerHTML='';
+    summaryEl.innerHTML='<div class="tbl-status no-arc">No arc detected — keep logging.</div>';
+    pocketsEl.innerHTML='';
+    boardEl.innerHTML=renderLandscapeBoard(new Set());
     return;
   }
 
   if(portfolio.length===0){
     const a=hotArcs[0];
-    summaryEl.innerHTML=`<div class="table-status no-arc"><b>${a.name}</b> +${a.bias.toFixed(1)}% z${a.z.toFixed(2)} — arc found, no play clears edge gate.</div>`;
-    boardEl.innerHTML=renderRouletteBoard(new Set());
-    ticketsEl.innerHTML='';
+    summaryEl.innerHTML=`<div class="tbl-status no-arc"><b>${a.name}</b> +${a.bias.toFixed(1)}% z${a.z.toFixed(2)} — no play clears edge gate.</div>`;
+    pocketsEl.innerHTML='';
+    boardEl.innerHTML=renderLandscapeBoard(new Set());
     return;
   }
 
   const p=portfolio[0];
   const betSet=new Set(p.nums.map(String));
   const a=hotArcs[0];
+  const evPositive=p.edge>=0;
 
-  summaryEl.innerHTML=`<div class="table-status">
-    <b>${a.name}</b> +${a.bias.toFixed(1)}% · z ${a.z.toFixed(2)} · ${p.nums.length} pockets · ${p.nums.length}u stake · edge ${formatSignedPct(p.edge,0)}
+  // Compact one-line status
+  summaryEl.innerHTML=`<div class="tbl-status">
+    <span><b>${a.name}</b> · +${a.bias.toFixed(1)}% · z${a.z.toFixed(2)} · ${p.nums.length}u</span>
+    <span class="tbl-status-right">
+      <span class="tbl-ev${evPositive?'':' neg'}">EV ${formatSignedPct(p.edge,0)}</span>
+    </span>
   </div>`;
 
-  boardEl.innerHTML=renderRouletteBoard(betSet);
+  // Pocket pills — small, tight row
+  const pills=p.nums.map(n=>`<div class="tbl-pocket ${numColor(n)}">${escapeHtml(n)}</div>`).join('');
+  pocketsEl.innerHTML=`<div class="tbl-pockets">${pills}</div>`;
 
-  const chips=p.nums.map(n=>`<div class="pchip ${numColor(n)} arc">${escapeHtml(n)}</div>`).join('');
-  ticketsEl.innerHTML=`<div class="pocket-strip">${chips}</div>`;
+  boardEl.innerHTML=renderLandscapeBoard(betSet);
 }
 
 // ── SIMULATOR ──
 function randomFrom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-function randomWheelArc(size=SIM_BIAS_ARC_SIZE){
+function randomWheelArc(size){
   const start=Math.floor(Math.random()*WHEEL.length);
   const out=[];
   for(let i=0;i<size;i++)out.push(WHEEL[(start+i)%WHEEL.length]);
@@ -735,6 +896,7 @@ function batchLog(nums){
   });
   totalSpins=spinLog.length;
   currentInput='';
+  _wmapSpins=-1; // invalidate cache
   restoreHitMarkers();
   saveState();
   updateDisplay();
@@ -743,16 +905,17 @@ function batchLog(nums){
 function simulateFairSpins(count){
   const spins=[];
   for(let i=0;i<count;i++)spins.push(randomFrom(ALL));
-  lastSimStatus=`Added ${count} fair simulated spin${count===1?'':'s'} · no built-in wheel bias.`;
+  lastSimStatus=`Added ${count} fair spin${count===1?'':'s'} · no bias.`;
   batchLog(spins);
 }
 function simulateBiasedSpins(count){
-  const arc=randomWheelArc();
+  const {SIM_BIAS_ARC_SIZE,SIM_BIAS_ARC_RATE}=M();
+  const arc=randomWheelArc(SIM_BIAS_ARC_SIZE);
   const spins=[];
   for(let i=0;i<count;i++){
     spins.push(Math.random()<SIM_BIAS_ARC_RATE?randomFrom(arc):randomFrom(ALL));
   }
-  lastSimStatus=`Added ${count} biased simulated spin${count===1?'':'s'} · ${Math.round(SIM_BIAS_ARC_RATE*100)}% from arc ${rangeLabel(arc)}.`;
+  lastSimStatus=`Added ${count} biased spin${count===1?'':'s'} · ${Math.round(SIM_BIAS_ARC_RATE*100)}% from ${SIM_BIAS_ARC_SIZE}p arc ${rangeLabel(arc)}.`;
   batchLog(spins);
 }
 function updateSimStatus(){
@@ -767,6 +930,7 @@ function logNum(n){
   const normalized=String(n)==='00'?'00':Number(n);
   spinLog.push(normalized);
   totalSpins=spinLog.length;
+  _wmapSpins=-1; // invalidate cache
   const b=document.getElementById('nb-'+String(normalized));
   if(b)b.classList.add('hit');
   saveState();
@@ -777,12 +941,14 @@ function undoLast(){
   if(spinLog.length===0)return;
   spinLog.pop();
   totalSpins=spinLog.length;
+  _wmapSpins=-1;
   restoreHitMarkers();
   saveState();
   updateAll();
 }
 
 function keyPress(d){
+  if(currentInput==='00'){currentInput=d;updateDisplay();return;}
   if(currentInput.length>=2)return;
   if(currentInput==='0'&&d!=='0')currentInput=d;
   else currentInput+=d;
@@ -857,10 +1023,17 @@ function updateStats(){
   }
 }
 
-function updateAll(){ updateStats(); updateHistory(); updateSimStatus(); renderPlays(); renderTable(); }
+function updateAll(){
+  _wmapSpins=-1; // always bust cache on full update
+  updateStats(); updateHistory(); updateSimStatus(); renderPlays(); renderTable();
+  // sync mode UI
+  document.getElementById('modeDealer').classList.toggle('active',currentMode==='dealer');
+  document.getElementById('modeBias').classList.toggle('active',currentMode==='bias');
+  document.getElementById('modeHint').textContent=M().hint;
+}
 
 function resetAll(){
-  spinLog=[]; totalSpins=0; currentInput=''; lastSimStatus='';
+  spinLog=[]; totalSpins=0; currentInput=''; lastSimStatus=''; _wmapSpins=-1;
   try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('hit','arc-hot'));
   updateDisplay(); updateAll();
