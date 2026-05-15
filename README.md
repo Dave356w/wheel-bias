@@ -1,5 +1,5 @@
 https://dave356w.github.io/wheel-bias/
-# wheel-bias
+# wheel
 Roulette wheel bias tracker — mobile PWA
 
 ## Theory
