@@ -26,121 +26,121 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;min-height:100vh;overscroll-behavior:none;}
 
-.header{display:flex;align-items:center;justify-content:space-between;padding:calc(var(–safe-top) + 14px) 20px 14px;background:var(–bg);border-bottom:1px solid var(–border);position:sticky;top:0;z-index:100;}
-.app-title{font-family:‘Bebas Neue’,sans-serif;font-size:28px;letter-spacing:.04em;color:var(–text);line-height:1;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:calc(var(--safe-top) + 14px) 20px 14px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.app-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--text);line-height:1;}
 .header-right{display:flex;align-items:center;gap:10px;}
-.spin-badge{font-family:‘DM Mono’,monospace;font-size:12px;color:var(–text3);background:var(–surface2);padding:4px 10px;border-radius:20px;border:1px solid var(–border);}
-.btn-reset{background:transparent;border:1px solid var(–border);color:var(–text3);font-family:‘DM Mono’,monospace;font-size:11px;letter-spacing:.04em;padding:6px 12px;border-radius:20px;cursor:pointer;}
+.spin-badge{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);background:var(--surface2);padding:4px 10px;border-radius:20px;border:1px solid var(--border);}
+.btn-reset{background:transparent;border:1px solid var(--border);color:var(--text3);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;padding:6px 12px;border-radius:20px;cursor:pointer;}
 .btn-reset:active{opacity:.6;}
 
-.tabs{display:flex;background:var(–bg);border-bottom:1px solid var(–border);position:sticky;top:calc(var(–safe-top) + 57px);z-index:99;}
-.tab{flex:1;padding:12px 4px;font-size:12px;font-family:‘DM Mono’,monospace;color:var(–text3);text-align:center;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:.03em;}
-.tab.active{color:var(–amber);border-bottom-color:var(–amber);}
+.tabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:calc(var(--safe-top) + 57px);z-index:99;}
+.tab{flex:1;padding:12px 4px;font-size:12px;font-family:'DM Mono',monospace;color:var(--text3);text-align:center;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:.03em;}
+.tab.active{color:var(--amber);border-bottom-color:var(--amber);}
 
 .panel{display:none;}
 .panel.active{display:block;}
 
 /* LOG */
 .log-panel{padding:20px;}
-.num-display{background:var(–surface2);border:1px solid var(–border2);border-radius:var(–radius-lg);padding:20px;text-align:center;margin-bottom:16px;}
-.num-display-val{font-family:‘Bebas Neue’,sans-serif;font-size:72px;letter-spacing:.04em;color:var(–text);line-height:1;min-height:72px;display:flex;align-items:center;justify-content:center;}
-.num-display-val.empty{color:var(–text3);}
+.num-display{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:20px;text-align:center;margin-bottom:16px;}
+.num-display-val{font-family:'Bebas Neue',sans-serif;font-size:72px;letter-spacing:.04em;color:var(--text);line-height:1;min-height:72px;display:flex;align-items:center;justify-content:center;}
+.num-display-val.empty{color:var(--text3);}
 .num-display-val.red-num{color:#ff9a9a;}
-.num-display-val.black-num{color:var(–text2);}
-.num-display-val.green-num{color:var(–green);}
-.num-display-label{font-family:‘DM Mono’,monospace;font-size:11px;color:var(–text3);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+.num-display-val.black-num{color:var(--text2);}
+.num-display-val.green-num{color:var(--green);}
+.num-display-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
 
 .keypad{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
-.key{background:var(–surface2);border:1px solid var(–border);border-radius:var(–radius);color:var(–text);font-family:‘DM Mono’,monospace;font-size:20px;font-weight:500;padding:0;height:58px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;}
-.key:active{background:var(–surface3);transform:scale(.95);}
-.key.key-00{font-size:16px;color:var(–green);border-color:rgba(0,184,148,.2);background:rgba(0,184,148,.06);}
-.key.key-del{font-size:22px;color:var(–text2);}
-.key.key-log{background:var(–amber);border-color:var(–amber);color:#0a0a0a;font-size:15px;letter-spacing:.06em;text-transform:uppercase;font-weight:500;}
+.key{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:'DM Mono',monospace;font-size:20px;font-weight:500;padding:0;height:58px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;}
+.key:active{background:var(--surface3);transform:scale(.95);}
+.key.key-00{font-size:16px;color:var(--green);border-color:rgba(0,184,148,.2);background:rgba(0,184,148,.06);}
+.key.key-del{font-size:22px;color:var(--text2);}
+.key.key-log{background:var(--amber);border-color:var(--amber);color:#0a0a0a;font-size:15px;letter-spacing:.06em;text-transform:uppercase;font-weight:500;}
 .key.key-log:active{background:#e5b84f;transform:scale(.95);}
 .key.key-log.disabled{opacity:.35;pointer-events:none;}
 
 .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
-.stat-card{background:var(–surface2);border:1px solid var(–border);border-radius:var(–radius-lg);padding:12px 14px;}
-.stat-label{font-size:10px;font-family:‘DM Mono’,monospace;color:var(–text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
-.stat-val{font-family:‘Bebas Neue’,sans-serif;font-size:28px;letter-spacing:.04em;color:var(–text);line-height:1.1;}
-.stat-sub{font-size:11px;color:var(–text3);font-family:‘DM Mono’,monospace;}
+.stat-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;}
+.stat-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--text);line-height:1.1;}
+.stat-sub{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;}
 
-.sim-card{background:var(–surface2);border:1px solid var(–border);border-radius:var(–radius-lg);padding:12px 14px;margin-bottom:18px;}
-.sim-title{font-size:10px;font-family:‘DM Mono’,monospace;color:var(–text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;}
-.sim-desc{font-size:11px;color:var(–text3);font-family:‘DM Mono’,monospace;line-height:1.45;margin-bottom:10px;}
+.sim-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:18px;}
+.sim-title{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;}
+.sim-desc{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;line-height:1.45;margin-bottom:10px;}
 .sim-row{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:7px;}
-.sim-btn{background:var(–surface3);border:1px solid var(–border);color:var(–text2);border-radius:var(–radius);font-family:‘DM Mono’,monospace;font-size:11px;letter-spacing:.03em;padding:9px 6px;cursor:pointer;}
+.sim-btn{background:var(--surface3);border:1px solid var(--border);color:var(--text2);border-radius:var(--radius);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.03em;padding:9px 6px;cursor:pointer;}
 .sim-btn:active{transform:scale(.96);opacity:.75;}
-.sim-btn.fair{border-color:rgba(162,155,254,.22);color:var(–purple);}
-.sim-btn.bias{border-color:rgba(253,203,110,.24);color:var(–amber);}
-.sim-status{font-size:10px;color:var(–text3);font-family:‘DM Mono’,monospace;line-height:1.45;margin-top:4px;min-height:14px;}
+.sim-btn.fair{border-color:rgba(162,155,254,.22);color:var(--purple);}
+.sim-btn.bias{border-color:rgba(253,203,110,.24);color:var(--amber);}
+.sim-status{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;line-height:1.45;margin-top:4px;min-height:14px;}
 
 /* PLAYS */
 .plays-panel{padding:20px;}
-.arc-card{background:var(–surface2);border:1px solid var(–border);border-left:3px solid var(–amber);border-radius:var(–radius-lg);padding:14px;margin-bottom:14px;}
-.arc-title{font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:.04em;color:var(–amber);margin-bottom:4px;}
-.arc-meta{font-size:11px;font-family:‘DM Mono’,monospace;color:var(–text2);line-height:1.6;margin-bottom:10px;}
-.arc-meta b{color:var(–text);}
+.arc-card{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius-lg);padding:14px;margin-bottom:14px;}
+.arc-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--amber);margin-bottom:4px;}
+.arc-meta{font-size:11px;font-family:'DM Mono',monospace;color:var(--text2);line-height:1.6;margin-bottom:10px;}
+.arc-meta b{color:var(--text);}
 .arc-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
-.arc-chip{padding:4px 9px;border-radius:6px;font-family:‘DM Mono’,monospace;font-size:13px;font-weight:500;}
+.arc-chip{padding:4px 9px;border-radius:6px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;}
 .arc-chip.red{background:#5a0f0f;color:#ffb6b6;}
 .arc-chip.black{background:#141414;color:#ddd;border:1px solid #2a2a2a;}
 .arc-chip.green{background:#053d26;color:#67e6c0;}
-.arc-instruction{font-size:11px;font-family:‘DM Mono’,monospace;color:var(–text3);line-height:1.5;}
-.arc-instruction b{color:var(–green);}
-.no-signal{font-size:13px;color:var(–text3);text-align:center;padding:48px 20px;font-family:‘DM Mono’,monospace;line-height:1.8;}
+.arc-instruction{font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);line-height:1.5;}
+.arc-instruction b{color:var(--green);}
+.no-signal{font-size:13px;color:var(--text3);text-align:center;padding:48px 20px;font-family:'DM Mono',monospace;line-height:1.8;}
 
-.density-label{font-size:10px;font-family:‘DM Mono’,monospace;color:var(–text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;margin-top:18px;}
+.density-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;margin-top:18px;}
 .density-list{display:flex;flex-direction:column;gap:5px;}
-.density-row{display:flex;align-items:center;gap:8px;font-family:‘DM Mono’,monospace;font-size:12px;}
+.density-row{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:12px;}
 .density-pocket{width:32px;text-align:center;padding:3px 0;border-radius:5px;font-weight:500;flex-shrink:0;}
 .density-pocket.red{background:#5a0f0f;color:#ffb6b6;}
 .density-pocket.black{background:#141414;color:#ddd;border:1px solid #2a2a2a;}
 .density-pocket.green{background:#053d26;color:#67e6c0;}
 .density-bar{flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;position:relative;}
-.density-bar-fill{height:100%;border-radius:3px;background:var(–amber);}
-.density-bar-fill.in-arc{background:var(–green);}
-.density-val{font-size:11px;color:var(–text3);width:38px;text-align:right;flex-shrink:0;}
+.density-bar-fill{height:100%;border-radius:3px;background:var(--amber);}
+.density-bar-fill.in-arc{background:var(--green);}
+.density-val{font-size:11px;color:var(--text3);width:38px;text-align:right;flex-shrink:0;}
 
 /* WHEEL */
 .wheel-panel{padding:16px;}
 .wheel-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-bottom:12px;}
-.nb{aspect-ratio:1;border:none;border-radius:5px;font-family:‘DM Mono’,monospace;font-size:11px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;transition:transform .1s;outline:none;min-height:44px;}
+.nb{aspect-ratio:1;border:none;border-radius:5px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;transition:transform .1s;outline:none;min-height:44px;}
 .nb:active{transform:scale(.9);}
 .nb.red{background:#8b1a1a;color:#ffaaaa;}
 .nb.black{background:#222;color:#aaa;border:1px solid #333;}
 .nb.green{background:#0d4a3a;color:#4ecba0;}
-.nb.arc-hot{box-shadow:0 0 0 2px var(–amber);}
-.nb .hd{position:absolute;top:2px;right:2px;width:5px;height:5px;border-radius:50%;background:var(–amber);display:none;}
+.nb.arc-hot{box-shadow:0 0 0 2px var(--amber);}
+.nb .hd{position:absolute;top:2px;right:2px;width:5px;height:5px;border-radius:50%;background:var(--amber);display:none;}
 .nb.hit .hd{display:block;}
-.wheel-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(–text3);font-family:‘DM Mono’,monospace;margin-bottom:16px;}
+.wheel-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:16px;}
 .wheel-legend span{display:flex;align-items:center;gap:5px;}
 .leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
-.leg-ring{width:10px;height:10px;border-radius:3px;border:2px solid var(–amber);flex-shrink:0;}
-.wheel-order-label{font-size:10px;font-family:‘DM Mono’,monospace;color:var(–text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.leg-ring{width:10px;height:10px;border-radius:3px;border:2px solid var(--amber);flex-shrink:0;}
+.wheel-order-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
 .wheel-order{display:flex;flex-wrap:wrap;gap:5px;}
-.wo-pill{padding:3px 8px;border-radius:6px;font-size:11px;font-family:‘DM Mono’,monospace;font-weight:500;}
-.wo-pill.red{background:var(–red-dim);color:#ff9a9a;}
+.wo-pill{padding:3px 8px;border-radius:6px;font-size:11px;font-family:'DM Mono',monospace;font-weight:500;}
+.wo-pill.red{background:var(--red-dim);color:#ff9a9a;}
 .wo-pill.black{background:#1a1a1a;color:#888;border:1px solid #2a2a2a;}
-.wo-pill.green{background:var(–green-dim);color:var(–green);}
-.wo-pill.in-arc{box-shadow:0 0 0 2px var(–amber);}
+.wo-pill.green{background:var(--green-dim);color:var(--green);}
+.wo-pill.in-arc{box-shadow:0 0 0 2px var(--amber);}
 
 /* TABLE */
 .table-panel{padding:8px 10px;}
 .tbl-status{display:flex;align-items:center;justify-content:space-between;gap:8px;
-font-family:‘DM Mono’,monospace;font-size:11px;color:var(–text2);
-background:var(–surface2);border:1px solid var(–border);border-left:3px solid var(–amber);
-border-radius:var(–radius);padding:6px 10px;margin-bottom:6px;line-height:1.3;}
-.tbl-status b{color:var(–amber);}
-.tbl-status.no-arc{border-left-color:var(–text3);color:var(–text3);}
+font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);
+background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);
+border-radius:var(--radius);padding:6px 10px;margin-bottom:6px;line-height:1.3;}
+.tbl-status b{color:var(--amber);}
+.tbl-status.no-arc{border-left-color:var(--text3);color:var(--text3);}
 .tbl-pockets{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;}
 .tbl-pocket{display:flex;align-items:center;justify-content:center;
 width:30px;height:24px;border-radius:5px;
-font-family:‘DM Mono’,monospace;font-size:11px;font-weight:500;
+font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
 border:1.5px solid transparent;}
-.tbl-pocket.red{background:#5a0f0f;color:#ffb6b6;border-color:var(–amber);}
-.tbl-pocket.black{background:#141414;color:#ddd;border-color:var(–amber);}
-.tbl-pocket.green{background:#053d26;color:#67e6c0;border-color:var(–amber);}
+.tbl-pocket.red{background:#5a0f0f;color:#ffb6b6;border-color:var(--amber);}
+.tbl-pocket.black{background:#141414;color:#ddd;border-color:var(--amber);}
+.tbl-pocket.green{background:#053d26;color:#67e6c0;border-color:var(--amber);}
 
 .landscape-board{
 display:grid;
@@ -150,29 +150,29 @@ gap:2px;
 width:100%;
 }
 .lc{display:flex;align-items:center;justify-content:center;border-radius:3px;
-font-family:‘DM Mono’,monospace;font-size:10px;font-weight:500;
+font-family:'DM Mono',monospace;font-size:10px;font-weight:500;
 border:1px solid rgba(255,255,255,.12);height:28px;position:relative;}
 .lc.red{background:#5a0f0f;color:#ffb6b6;}
 .lc.black{background:#0f0f0f;color:#ccc;}
 .lc.green{background:#053d26;color:#67e6c0;}
-.lc.bet-on{box-shadow:inset 0 0 0 2px var(–amber);background-color:rgba(253,203,110,.2);color:#fff;}
+.lc.bet-on{box-shadow:inset 0 0 0 2px var(--amber);background-color:rgba(253,203,110,.2);color:#fff;}
 .lc.zero-cell{font-size:11px;}
 .lob{display:flex;align-items:center;justify-content:center;border-radius:3px;
 border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
-font-family:‘DM Mono’,monospace;font-size:9px;color:rgba(255,255,255,.35);
+font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.35);
 height:28px;text-align:center;line-height:1.2;}
 
 .hist-table-wrap{margin-bottom:16px;}
-.hist-table-label{font-size:10px;font-family:‘DM Mono’,monospace;color:var(–text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.hist-table-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
 .hist-table{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;}
-.hist-cell{height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:‘Bebas Neue’,sans-serif;font-size:20px;border:1px solid transparent;position:relative;}
+.hist-cell{height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;border:1px solid transparent;position:relative;}
 .hist-cell.red{background:#4a0d0d;color:#ffb6b6;border-color:#7e1515;}
 .hist-cell.black{background:#111;color:#aaa;border-color:#2a2a2a;}
 .hist-cell.green{background:#042b1e;color:#67e6c0;border-color:#075a38;}
-.hist-cell.empty{background:var(–surface2);border-color:var(–border);}
-.hist-cell.newest::after{content:’’;position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:var(–amber);}
+.hist-cell.empty{background:var(--surface2);border-color:var(--border);}
+.hist-cell.newest::after{content:'';position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:var(--amber);}
 
-.bottom-safe{height:calc(var(–safe-bottom) + 12px);}
+.bottom-safe{height:calc(var(--safe-bottom) + 12px);}
 
 @media(min-width:640px){
 .wheel-grid{grid-template-columns:repeat(13,1fr);}
@@ -305,12 +305,12 @@ const N=38;
 const WHEEL_IDX={};
 WHEEL.forEach((n,i)=>WHEEL_IDX[String(n)]=i);
 
-// ── CONFIG ──
+// CONFIG
 const MIN_SPINS=20;
-const SIGMA=1.6;             // Gaussian kernel σ in pocket units. ~3 effective neighbors per side.
+const SIGMA=1.6;
 const MIN_ARC=3;
 const MAX_ARC=9;
-const GROW_THRESHOLD=1.20;   // marginal pocket must contribute >= 1.20× uniform expectation to be added
+const GROW_THRESHOLD=1.20;
 const STORAGE_KEY='wheel.log.v10';
 
 let spinLog=[];
@@ -340,7 +340,6 @@ function escapeHtml(v){
   return String(v).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
 }
 
-// ── STORAGE ──
 function saveState(){
   try{ localStorage.setItem(STORAGE_KEY,JSON.stringify(spinLog)); }catch(e){}
 }
@@ -365,27 +364,21 @@ function restoreHitMarkers(){
   });
 }
 
-// ── NEIGHBOR DENSITY ──
-// Circular distance between two wheel positions (0..N-1)
 function wheelDist(i,j){
   const d=Math.abs(i-j);
   return Math.min(d,N-d);
 }
-// Raw hit count per wheel-index position
 function hitCounts(){
   const c=new Array(N).fill(0);
   spinLog.forEach(n=>{ c[WHEEL_IDX[String(n)]]+=1; });
   return c;
 }
-// Density[i] = sum over j of hits[j] * exp(-d(i,j)^2 / (2σ²))
 function neighborDensity(){
   const hits=hitCounts();
   const d=new Array(N).fill(0);
-  // Precompute kernel weights for distances 0..floor(N/2)
   const maxDist=Math.floor(N/2);
   const kernel=new Array(maxDist+1);
   for(let k=0;k<=maxDist;k++) kernel[k]=Math.exp(-(k*k)/(2*SIGMA*SIGMA));
-
   for(let i=0;i<N;i++){
     let s=0;
     for(let j=0;j<N;j++){
@@ -396,50 +389,34 @@ function neighborDensity(){
   }
   return d;
 }
-// Uniform expected density at any pocket: sum of kernel over all 38 positions × (totalSpins/38)
 function uniformExpectedDensity(){
   const maxDist=Math.floor(N/2);
-  let kSum=1; // distance 0 to self
+  let kSum=1;
   for(let k=1;k<=maxDist;k++){
     const w=Math.exp(-(k*k)/(2*SIGMA*SIGMA));
-    kSum+= (k===N/2 && N%2===0)?w:2*w; // mirror neighbors except self
+    kSum+= (k===N/2 && N%2===0)?w:2*w;
   }
   return totalSpins*kSum/N;
 }
 
-// ── BEST ARC ──
-// Find contiguous arc on wheel with highest mean density per pocket.
-// Strategy: anchor at the highest-density pocket. Grow outward (alternating sides)
-// as long as the candidate pocket's density >= GROW_THRESHOLD × uniform expected density.
-// Cap at MAX_ARC. Require at least MIN_ARC pockets to qualify.
 function findBestArc(){
   if(totalSpins<MIN_SPINS)return null;
-
   const density=neighborDensity();
   const expectedPer=uniformExpectedDensity();
   if(expectedPer===0)return null;
-
-  // Anchor = wheel index of max density
   let anchor=0, maxD=-1;
   for(let i=0;i<N;i++){
     if(density[i]>maxD){maxD=density[i];anchor=i;}
   }
   if(maxD<GROW_THRESHOLD*expectedPer)return null;
-
-  // Grow outward: track left and right pointers as wheel offsets from anchor
-  // Arc = positions [anchor-leftSpan .. anchor+rightSpan] (mod N)
   let leftSpan=0, rightSpan=0;
   const inArc=new Set([anchor]);
-
   while(inArc.size<MAX_ARC){
     const leftCandidate=((anchor-leftSpan-1)%N+N)%N;
     const rightCandidate=(anchor+rightSpan+1)%N;
     if(leftCandidate===rightCandidate && inArc.has(leftCandidate))break;
-
     const leftLift=density[leftCandidate]/expectedPer;
     const rightLift=density[rightCandidate]/expectedPer;
-
-    // Pick stronger candidate first
     let chose=false;
     if(leftLift>=rightLift && leftLift>=GROW_THRESHOLD && !inArc.has(leftCandidate)){
       inArc.add(leftCandidate); leftSpan++; chose=true;
@@ -450,43 +427,26 @@ function findBestArc(){
     }
     if(!chose)break;
   }
-
   if(inArc.size<MIN_ARC)return null;
-
-  // Build ordered arc (wheel-clockwise from leftmost included position)
   const startIdx=((anchor-leftSpan)%N+N)%N;
   const orderedIdx=[];
   for(let k=0;k<inArc.size;k++) orderedIdx.push((startIdx+k)%N);
   const arcNums=orderedIdx.map(i=>WHEEL[i]);
-
-  // Stats
   const arcDensitySum=orderedIdx.reduce((s,i)=>s+density[i],0);
   const arcMean=arcDensitySum/inArc.size;
   const lift=arcMean/expectedPer;
-
-  // Actual hits inside arc / total spins
   const arcSet=new Set(arcNums.map(String));
   const arcHits=spinLog.filter(n=>arcSet.has(String(n))).length;
   const arcHitRate=arcHits/totalSpins;
   const expectedRate=inArc.size/N;
-
   return {
-    nums:arcNums,
-    indices:orderedIdx,
-    size:inArc.size,
-    anchor:WHEEL[anchor],
-    density,
-    expectedPer,
-    arcMean,
-    lift,
-    arcHits,
-    arcHitRate,
-    expectedRate,
+    nums:arcNums, indices:orderedIdx, size:inArc.size,
+    anchor:WHEEL[anchor], density, expectedPer, arcMean, lift,
+    arcHits, arcHitRate, expectedRate,
     biasPct:(arcHitRate-expectedRate)*100
   };
 }
 
-// ── RENDERS ──
 function highlightWheel(arc){
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('arc-hot'));
   if(!arc)return;
@@ -503,10 +463,8 @@ function renderPlays(){
     el.innerHTML=`<div class="no-signal">Log at least ${MIN_SPINS} spins<br>to compute neighbor density.<br><br>${totalSpins} / ${MIN_SPINS} logged</div>`;
     return;
   }
-
   const arc=findBestArc();
   highlightWheel(arc);
-
   if(!arc){
     const density=neighborDensity();
     const expectedPer=uniformExpectedDensity();
@@ -515,10 +473,8 @@ function renderPlays(){
     el.innerHTML=html;
     return;
   }
-
   const chips=arc.nums.map(n=>`<span class="arc-chip ${numColor(n)}">${escapeHtml(n)}</span>`).join('');
   const arcSet=new Set(arc.nums.map(String));
-
   let html=`<div class="arc-card">
     <div class="arc-title">Hot Sector · ${arc.size} pockets</div>
     <div class="arc-meta">
@@ -528,18 +484,15 @@ function renderPlays(){
     <div class="arc-chips">${chips}</div>
     <div class="arc-instruction">Place <b>1 chip straight up</b> on each pocket above (${arc.size} units total).</div>
   </div>`;
-
   html+=renderDensityList(arc.density,arc.expectedPer,arcSet);
   el.innerHTML=html;
 }
 
 function renderDensityList(density,expectedPer,arcSet){
-  // Top 12 by density, rendered in wheel order they appear among top 12
   const ranked=density.map((d,i)=>({d,i,n:WHEEL[i]}))
     .sort((a,b)=>b.d-a.d)
     .slice(0,12);
   const maxD=Math.max(...ranked.map(r=>r.d),1e-9);
-
   let html='<div class="density-label">Top 12 neighbor-density pockets</div><div class="density-list">';
   ranked.forEach(r=>{
     const pct=(r.d/maxD)*100;
@@ -564,7 +517,6 @@ function renderLandscapeBoard(betSet){
   const row1=[3,6,9,12,15,18,21,24,27,30,33,36];
   const row2=[2,5,8,11,14,17,20,23,26,29,32,35];
   const row3=[1,4,7,10,13,16,19,22,25,28,31,34];
-
   let html='<div class="landscape-board">';
   html+=`<div class="lc green zero-cell" style="grid-column:1;grid-row:1/4;">0<br>00</div>`;
   row1.forEach((n,i)=>html+=cellNum(n,i+2,1));
@@ -589,14 +541,12 @@ function renderTable(){
   const summaryEl=document.getElementById('tableSummary');
   const pocketsEl=document.getElementById('tablePockets');
   const boardEl=document.getElementById('tableBoardWrap');
-
   if(totalSpins<MIN_SPINS){
     summaryEl.innerHTML='';
     pocketsEl.innerHTML='';
     boardEl.innerHTML=`<div class="no-signal">Log at least ${MIN_SPINS} spins<br>to show table placements.</div>`;
     return;
   }
-
   const arc=findBestArc();
   if(!arc){
     summaryEl.innerHTML='<div class="tbl-status no-arc">No sector clears density threshold — keep logging.</div>';
@@ -604,19 +554,16 @@ function renderTable(){
     boardEl.innerHTML=renderLandscapeBoard(new Set());
     return;
   }
-
   const betSet=new Set(arc.nums.map(String));
   summaryEl.innerHTML=`<div class="tbl-status">
     <span>Anchor <b>${escapeHtml(arc.anchor)}</b> · ${arc.size}p · lift <b>${arc.lift.toFixed(2)}×</b> · bias +${arc.biasPct.toFixed(1)}%</span>
     <span><b>${arc.size}u</b></span>
   </div>`;
-
   const pills=arc.nums.map(n=>`<div class="tbl-pocket ${numColor(n)}">${escapeHtml(n)}</div>`).join('');
   pocketsEl.innerHTML=`<div class="tbl-pockets">${pills}</div>`;
   boardEl.innerHTML=renderLandscapeBoard(betSet);
 }
 
-// ── SIMULATOR ──
 function randomFrom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 function randomWheelArc(size){
   const start=Math.floor(Math.random()*N);
@@ -657,7 +604,6 @@ function updateSimStatus(){
   if(el && lastSimStatus) el.textContent=lastSimStatus;
 }
 
-// ── LOGGING ──
 function logNum(n){
   if(!VALID_NUMS.has(String(n)))return;
   const normalized=String(n)==='00'?'00':Number(n);
