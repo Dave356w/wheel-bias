@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -77,46 +76,54 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 
 /* PLAYS */
 .plays-panel{padding:20px;}
-.arc-card{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius-lg);padding:14px;margin-bottom:14px;}
-.arc-card.active-bet{border-left-color:var(--green);background:linear-gradient(180deg,rgba(0,184,148,0.05),var(--surface2));}
-.arc-card.transition{border-left-color:var(--purple);}
-.arc-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--amber);margin-bottom:4px;}
-.arc-card.active-bet .arc-title{color:var(--green);}
-.arc-card.transition .arc-title{color:var(--purple);}
+.arc-card{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--radius-lg);padding:14px;margin-bottom:14px;}
+.arc-card.drifted{border-left-color:var(--amber);}
+.arc-card.swapped{border-left-color:var(--purple);}
+.arc-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--green);margin-bottom:4px;}
+.arc-card.drifted .arc-title{color:var(--amber);}
+.arc-card.swapped .arc-title{color:var(--purple);}
 .arc-status-pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;margin-left:6px;vertical-align:middle;}
-.arc-status-pill.tracking{background:var(--amber-dim);color:var(--amber);}
-.arc-status-pill.bet{background:var(--green-dim);color:var(--green);}
-.arc-status-pill.trans{background:rgba(162,155,254,0.18);color:var(--purple);}
+.arc-status-pill.hold{background:var(--green-dim);color:var(--green);}
+.arc-status-pill.drift{background:var(--amber-dim);color:var(--amber);}
+.arc-status-pill.swap{background:rgba(162,155,254,0.18);color:var(--purple);}
 .arc-meta{font-size:11px;font-family:'DM Mono',monospace;color:var(--text2);line-height:1.6;margin-bottom:10px;}
 .arc-meta b{color:var(--text);}
 .arc-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
 .arc-chip{padding:4px 9px;border-radius:6px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;position:relative;}
 .arc-chip.red{background:#5a0f0f;color:#ffb6b6;}
 .arc-chip.black{background:#141414;color:#ddd;border:1px solid #2a2a2a;}
-.arc-chip.green{background:#053d26;color:#67e6c0;}
-.arc-chip.fading{opacity:0.4;}
-.arc-chip.new-add{box-shadow:0 0 0 2px var(--purple);}
+.arc-chip.green-pkt{background:#053d26;color:#67e6c0;}
+.arc-chip.anchor-mark{box-shadow:0 0 0 2px var(--amber);}
 .arc-instruction{font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);line-height:1.5;}
 .arc-instruction b{color:var(--green);}
-.arc-instruction.no-bet b{color:var(--amber);}
 .no-signal{font-size:13px;color:var(--text3);text-align:center;padding:48px 20px;font-family:'DM Mono',monospace;line-height:1.8;}
 
-.streak-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:14px;}
-.streak-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
-.streak-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;}
-.streak-num{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--green);line-height:1;}
-.streak-num.below{color:var(--amber);}
-.streak-num.none{color:var(--text3);}
-.streak-sub{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);margin-left:4px;}
-.streak-chart{display:flex;align-items:flex-end;gap:1px;height:48px;background:var(--surface3);border-radius:6px;padding:4px;overflow:hidden;}
-.streak-bar{flex:1;min-width:2px;border-radius:1px 1px 0 0;background:var(--text3);position:relative;}
-.streak-bar.tracking{background:var(--amber);}
-.streak-bar.bet{background:var(--green);}
-.streak-bar.trans{background:var(--purple);}
-.streak-bar.none{background:#252525;}
-.streak-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:9px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:8px;}
-.streak-legend span{display:flex;align-items:center;gap:4px;}
-.streak-legend-dot{width:8px;height:8px;border-radius:2px;}
+.strength-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:14px;}
+.strength-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.strength-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;}
+.strength-num{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;line-height:1;}
+.strength-num.strong{color:var(--green);}
+.strength-num.weak{color:var(--amber);}
+.strength-num.noise{color:var(--text3);}
+.strength-sub{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);margin-left:4px;}
+.strength-bar-wrap{height:8px;background:var(--surface3);border-radius:4px;overflow:hidden;position:relative;}
+.strength-bar-fill{height:100%;border-radius:4px;transition:width .3s;}
+.strength-bar-fill.strong{background:var(--green);}
+.strength-bar-fill.weak{background:var(--amber);}
+.strength-bar-fill.noise{background:var(--text3);}
+.strength-bar-marks{display:flex;justify-content:space-between;font-size:9px;font-family:'DM Mono',monospace;color:var(--text3);margin-top:5px;}
+
+.lift-chart-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:14px;}
+.lift-chart{display:flex;align-items:flex-end;gap:2px;height:48px;background:var(--surface3);border-radius:6px;padding:4px;overflow:hidden;}
+.lift-bar{flex:1;min-width:2px;border-radius:1px 1px 0 0;background:var(--text3);position:relative;}
+.lift-bar.strong{background:var(--green);}
+.lift-bar.weak{background:var(--amber);}
+.lift-bar.noise{background:#2a2a2a;}
+.lift-bar.drift{background:var(--amber);position:relative;}
+.lift-bar.swap{background:var(--purple);position:relative;}
+.lift-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:9px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:8px;}
+.lift-legend span{display:flex;align-items:center;gap:4px;}
+.lift-legend-dot{width:8px;height:8px;border-radius:2px;}
 
 .density-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;margin-top:18px;}
 .density-list{display:flex;flex-direction:column;gap:5px;}
@@ -124,7 +131,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .density-pocket{width:32px;text-align:center;padding:3px 0;border-radius:5px;font-weight:500;flex-shrink:0;}
 .density-pocket.red{background:#5a0f0f;color:#ffb6b6;}
 .density-pocket.black{background:#141414;color:#ddd;border:1px solid #2a2a2a;}
-.density-pocket.green{background:#053d26;color:#67e6c0;}
+.density-pocket.green-pkt{background:#053d26;color:#67e6c0;}
 .density-bar{flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;position:relative;}
 .density-bar-fill{height:100%;border-radius:3px;background:var(--amber);}
 .density-bar-fill.in-arc{background:var(--green);}
@@ -137,47 +144,42 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .nb:active{transform:scale(.9);}
 .nb.red{background:#8b1a1a;color:#ffaaaa;}
 .nb.black{background:#222;color:#aaa;border:1px solid #333;}
-.nb.green{background:#0d4a3a;color:#4ecba0;}
-.nb.arc-hot{box-shadow:0 0 0 2px var(--amber);}
+.nb.green-pkt{background:#0d4a3a;color:#4ecba0;}
 .nb.bet-on{box-shadow:0 0 0 2px var(--green);}
 .nb .hd{position:absolute;top:2px;right:2px;width:5px;height:5px;border-radius:50%;background:var(--amber);display:none;}
 .nb.hit .hd{display:block;}
 .wheel-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:16px;}
 .wheel-legend span{display:flex;align-items:center;gap:5px;}
 .leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
-.leg-ring{width:10px;height:10px;border-radius:3px;border:2px solid var(--amber);flex-shrink:0;}
-.leg-ring.green{border-color:var(--green);}
+.leg-ring{width:10px;height:10px;border-radius:3px;border:2px solid var(--green);flex-shrink:0;}
 .wheel-order-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
 .wheel-order{display:flex;flex-wrap:wrap;gap:5px;}
 .wo-pill{padding:3px 8px;border-radius:6px;font-size:11px;font-family:'DM Mono',monospace;font-weight:500;}
 .wo-pill.red{background:var(--red-dim);color:#ff9a9a;}
 .wo-pill.black{background:#1a1a1a;color:#888;border:1px solid #2a2a2a;}
-.wo-pill.green{background:var(--green-dim);color:var(--green);}
-.wo-pill.in-arc{box-shadow:0 0 0 2px var(--amber);}
+.wo-pill.green-pkt{background:var(--green-dim);color:var(--green);}
 .wo-pill.bet-on{box-shadow:0 0 0 2px var(--green);}
 
 /* TABLE */
 .table-panel{padding:8px 10px;}
 .tbl-status{display:flex;align-items:center;justify-content:space-between;gap:8px;
 font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);
-background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--amber);
+background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);
 border-radius:var(--radius);padding:6px 10px;margin-bottom:6px;line-height:1.3;}
-.tbl-status.bet-active{border-left-color:var(--green);}
-.tbl-status.transition{border-left-color:var(--purple);}
-.tbl-status b{color:var(--amber);}
-.tbl-status.bet-active b{color:var(--green);}
-.tbl-status.transition b{color:var(--purple);}
-.tbl-status.no-arc{border-left-color:var(--text3);color:var(--text3);}
+.tbl-status.drifted{border-left-color:var(--amber);}
+.tbl-status.swapped{border-left-color:var(--purple);}
+.tbl-status.warming{border-left-color:var(--text3);color:var(--text3);}
+.tbl-status b{color:var(--green);}
+.tbl-status.drifted b{color:var(--amber);}
+.tbl-status.swapped b{color:var(--purple);}
 .tbl-pockets{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;}
 .tbl-pocket{display:flex;align-items:center;justify-content:center;
 width:30px;height:24px;border-radius:5px;
 font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
-border:1.5px solid transparent;}
-.tbl-pocket.red{background:#5a0f0f;color:#ffb6b6;border-color:var(--amber);}
-.tbl-pocket.black{background:#141414;color:#ddd;border-color:var(--amber);}
-.tbl-pocket.green{background:#053d26;color:#67e6c0;border-color:var(--amber);}
-.tbl-pocket.bet-active{border-color:var(--green);}
-.tbl-pocket.fading{opacity:0.4;}
+border:1.5px solid var(--green);}
+.tbl-pocket.red{background:#5a0f0f;color:#ffb6b6;}
+.tbl-pocket.black{background:#141414;color:#ddd;}
+.tbl-pocket.green-pkt{background:#053d26;color:#67e6c0;}
 
 .landscape-board{
 display:grid;
@@ -191,9 +193,8 @@ font-family:'DM Mono',monospace;font-size:10px;font-weight:500;
 border:1px solid rgba(255,255,255,.12);height:28px;position:relative;}
 .lc.red{background:#5a0f0f;color:#ffb6b6;}
 .lc.black{background:#0f0f0f;color:#ccc;}
-.lc.green{background:#053d26;color:#67e6c0;}
+.lc.green-pkt{background:#053d26;color:#67e6c0;}
 .lc.bet-active{box-shadow:inset 0 0 0 2px var(--green);background-color:rgba(0,184,148,.2);color:#fff;}
-.lc.bet-fading{box-shadow:inset 0 0 0 2px var(--amber);background-color:rgba(253,203,110,.1);color:#fff;opacity:0.55;}
 .lc.zero-cell{font-size:11px;}
 .lob{display:flex;align-items:center;justify-content:center;border-radius:3px;
 border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
@@ -206,9 +207,10 @@ height:28px;text-align:center;line-height:1.2;}
 .hist-cell{height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;border:1px solid transparent;position:relative;}
 .hist-cell.red{background:#4a0d0d;color:#ffb6b6;border-color:#7e1515;}
 .hist-cell.black{background:#111;color:#aaa;border-color:#2a2a2a;}
-.hist-cell.green{background:#042b1e;color:#67e6c0;border-color:#075a38;}
+.hist-cell.green-pkt{background:#042b1e;color:#67e6c0;border-color:#075a38;}
 .hist-cell.empty{background:var(--surface2);border-color:var(--border);}
 .hist-cell.newest::after{content:'';position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:var(--amber);}
+.hist-cell.in-sector{box-shadow:inset 0 0 0 2px var(--green);}
 
 .bottom-safe{height:calc(var(--safe-bottom) + 12px);}
 
@@ -280,12 +282,12 @@ height:28px;text-align:center;line-height:1.2;}
   </div>
 
   <div class="hist-table-wrap">
-    <div class="hist-table-label">Last 20 results</div>
+    <div class="hist-table-label">Last 20 results <span style="opacity:.6;">(green border = in current sector)</span></div>
     <div class="hist-table" id="histTable"></div>
   </div>
   <div class="stats-grid">
     <div class="stat-card"><div class="stat-label">Total spins</div><div class="stat-val" id="totalSpins">0</div></div>
-    <div class="stat-card"><div class="stat-label">Unique pockets</div><div class="stat-val" id="uniqueNums">0</div></div>
+    <div class="stat-card"><div class="stat-label">Sector hit rate</div><div class="stat-val" id="sectorHitRate">—</div><div class="stat-sub" id="sectorHitSub">vs 23.7% baseline</div></div>
     <div class="stat-card"><div class="stat-label">Hottest raw</div><div class="stat-val" id="hotNum">—</div><div class="stat-sub" id="hotPct">—</div></div>
     <div class="stat-card"><div class="stat-label">Coldest raw</div><div class="stat-val" id="coldNum">—</div><div class="stat-sub" id="coldPct">—</div></div>
   </div>
@@ -295,7 +297,7 @@ height:28px;text-align:center;line-height:1.2;}
 
 <div class="panel" id="panel-plays">
 <div class="plays-panel">
-  <div id="playsBody"><div class="no-signal">Log at least 20 spins<br>to compute neighbor density.</div></div>
+  <div id="playsBody"><div class="no-signal">Log <b id="spinsRemain">20</b> spins to lock<br>your first 9-pocket sector.</div></div>
 </div>
 <div class="bottom-safe"></div>
 </div>
@@ -304,7 +306,7 @@ height:28px;text-align:center;line-height:1.2;}
 <div class="table-panel">
   <div id="tableSummary"></div>
   <div id="tablePockets"></div>
-  <div id="tableBoardWrap"><div class="no-signal">Log at least 20 spins<br>to show table placements.</div></div>
+  <div id="tableBoardWrap"><div class="no-signal">Log 20 spins<br>to show table placements.</div></div>
 </div>
 <div class="bottom-safe"></div>
 </div>
@@ -318,8 +320,7 @@ height:28px;text-align:center;line-height:1.2;}
     <span><span class="leg-dot" style="background:#222;border:1px solid #333;"></span>Black</span>
     <span><span class="leg-dot" style="background:#0d4a3a;"></span>Green</span>
     <span><span style="width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0;"></span>Hit</span>
-    <span><span class="leg-ring"></span>Tracking</span>
-    <span><span class="leg-ring green"></span>Active bet</span>
+    <span><span class="leg-ring"></span>Current sector</span>
   </div>
   <div class="wheel-order-label">Physical wheel order</div>
   <div class="wheel-order" id="wheelOrder"></div>
@@ -336,28 +337,31 @@ const N=38;
 const WHEEL_IDX={};
 WHEEL.forEach((n,i)=>WHEEL_IDX[String(n)]=i);
 
-const MIN_SPINS_DISPLAY=20;
-const MIN_SPINS_BET=40;
-const MIN_STREAK_BET=15;
-const SIGMA=1.6;
-const MIN_ARC=3;
-const MAX_ARC=9;
-const GROW_THRESHOLD=1.40;
-const ANCHOR_DRIFT_TOLERANCE=2;
-const STREAK_CHART_SPINS=60;
-const STORAGE_KEY='wheel.log.v11';
-const STORAGE_HISTORY_KEY='wheel.history.v11';
+// --- CORE CONFIG ---
+const SECTOR_SIZE=9;                  // fixed 9-pocket arc
+const LOCK_AT=20;                     // initial sector locks after this many spins
+const SIGMA=1.6;                      // gaussian smoothing on the wheel
+const DRIFT_OVERLAP_MIN=6;            // overlap >= this -> drift, else swap
+const DRIFT_STEP=1;                   // shift anchor by 1 toward new best per drift
+const BASELINE_RATE=SECTOR_SIZE/N;    // ~23.7%
+const STRONG_LIFT=1.25;               // current arc lift >= this = strong trend
+const WEAK_LIFT=1.05;                 // >= this = weak trend, below = noise
+const STORAGE_KEY='wheel.v12.log';
+const STORAGE_HIST='wheel.v12.hist';
+const STORAGE_SECTOR='wheel.v12.sector';
+const STORAGE_TIMELINE='wheel.v12.timeline';
 
 let spinLog=[];
 let totalSpins=0;
 let currentInput='';
 let lastSimStatus='';
-let sectorHistory=[];
-let betState={phase:'idle',anchorPocket:null,anchorIdx:null,arcNums:[],fadingArcNums:[],newCandidateAnchor:null,newCandidateAnchorIdx:null,newCandidateArcNums:[],newCandidateStreak:0,streak:0,lastLift:0};
-let phaseTimeline=[];
+// Current locked sector: {anchorIdx, indices:[9], nums:[9], lift, version}
+let currentSector=null;
+// Timeline of per-spin transitions: 'lock','hold','drift','swap','warmup'
+let timeline=[];
 
 function numColor(n){
-  if(n==='00'||n===0)return'green';
+  if(n==='00'||n===0)return'green-pkt';
   if(RED.has(n))return'red';
   return'black';
 }
@@ -381,7 +385,8 @@ function escapeHtml(v){
 function saveState(){
   try{
     localStorage.setItem(STORAGE_KEY,JSON.stringify(spinLog));
-    localStorage.setItem(STORAGE_HISTORY_KEY,JSON.stringify(sectorHistory));
+    localStorage.setItem(STORAGE_SECTOR,JSON.stringify(currentSector));
+    localStorage.setItem(STORAGE_TIMELINE,JSON.stringify(timeline));
   }catch(e){}
 }
 function loadState(){
@@ -394,14 +399,13 @@ function loadState(){
         totalSpins=spinLog.length;
       }
     }
-    const histRaw=localStorage.getItem(STORAGE_HISTORY_KEY);
-    if(histRaw){
-      const h=JSON.parse(histRaw);
-      if(Array.isArray(h)) sectorHistory=h;
-    }
+    const sec=localStorage.getItem(STORAGE_SECTOR);
+    if(sec){ currentSector=JSON.parse(sec); }
+    const tl=localStorage.getItem(STORAGE_TIMELINE);
+    if(tl){ const t=JSON.parse(tl); if(Array.isArray(t)) timeline=t; }
     restoreHitMarkers();
   }catch(e){
-    spinLog=[]; totalSpins=0; sectorHistory=[];
+    spinLog=[]; totalSpins=0; currentSector=null; timeline=[];
   }
 }
 function restoreHitMarkers(){
@@ -447,356 +451,266 @@ function uniformExpectedDensityFor(spinCount){
   return spinCount*kSum/N;
 }
 
-function findBestArcFor(log){
-  const spinCount=log.length;
-  if(spinCount<MIN_SPINS_DISPLAY)return null;
+// Find the best contiguous 9-pocket arc on the wheel by summing the
+// neighbor-density values across each possible window. Returns the
+// window-center index (the median of the 9), the indices in order, and
+// total/mean density.
+function bestArcWindow(log){
+  if(log.length===0) return null;
   const density=neighborDensityFor(log);
-  const expectedPer=uniformExpectedDensityFor(spinCount);
-  if(expectedPer===0)return null;
-  let anchor=0, maxD=-1;
-  for(let i=0;i<N;i++){
-    if(density[i]>maxD){maxD=density[i];anchor=i;}
-  }
-  if(maxD<GROW_THRESHOLD*expectedPer)return null;
-  let leftSpan=0, rightSpan=0;
-  const inArc=new Set([anchor]);
-  while(inArc.size<MAX_ARC){
-    const leftCandidate=((anchor-leftSpan-1)%N+N)%N;
-    const rightCandidate=(anchor+rightSpan+1)%N;
-    if(leftCandidate===rightCandidate && inArc.has(leftCandidate))break;
-    const leftLift=density[leftCandidate]/expectedPer;
-    const rightLift=density[rightCandidate]/expectedPer;
-    let chose=false;
-    if(leftLift>=rightLift && leftLift>=GROW_THRESHOLD && !inArc.has(leftCandidate)){
-      inArc.add(leftCandidate); leftSpan++; chose=true;
-    } else if(rightLift>=GROW_THRESHOLD && !inArc.has(rightCandidate)){
-      inArc.add(rightCandidate); rightSpan++; chose=true;
-    } else if(leftLift>=GROW_THRESHOLD && !inArc.has(leftCandidate)){
-      inArc.add(leftCandidate); leftSpan++; chose=true;
+  // Compute sum of density over every contiguous 9-window
+  let bestStart=0, bestSum=-1;
+  for(let s=0;s<N;s++){
+    let sum=0;
+    for(let k=0;k<SECTOR_SIZE;k++){
+      sum+=density[(s+k)%N];
     }
-    if(!chose)break;
+    if(sum>bestSum){ bestSum=sum; bestStart=s; }
   }
-  if(inArc.size<MIN_ARC)return null;
-  const startIdx=((anchor-leftSpan)%N+N)%N;
-  const orderedIdx=[];
-  for(let k=0;k<inArc.size;k++) orderedIdx.push((startIdx+k)%N);
-  const arcNums=orderedIdx.map(i=>WHEEL[i]);
-  const arcDensitySum=orderedIdx.reduce((s,i)=>s+density[i],0);
-  const arcMean=arcDensitySum/inArc.size;
-  const lift=arcMean/expectedPer;
-  const arcSet=new Set(arcNums.map(String));
-  const arcHits=log.filter(n=>arcSet.has(String(n))).length;
-  const arcHitRate=arcHits/spinCount;
-  const expectedRate=inArc.size/N;
-  return {
-    nums:arcNums, indices:orderedIdx, size:inArc.size,
-    anchor:WHEEL[anchor], anchorIdx:anchor,
-    density, expectedPer, arcMean, lift,
-    arcHits, arcHitRate, expectedRate,
-    biasPct:(arcHitRate-expectedRate)*100
-  };
+  const indices=[];
+  for(let k=0;k<SECTOR_SIZE;k++) indices.push((bestStart+k)%N);
+  const nums=indices.map(i=>WHEEL[i]);
+  const anchorIdx=indices[Math.floor(SECTOR_SIZE/2)]; // center
+  const expectedPer=uniformExpectedDensityFor(log.length);
+  const arcMean=bestSum/SECTOR_SIZE;
+  const lift=expectedPer>0?(arcMean/expectedPer):1;
+  return {anchorIdx, startIdx:bestStart, indices, nums, density, expectedPer, arcMean, lift, bestSum};
 }
-function findBestArc(){ return findBestArcFor(spinLog); }
 
-function rebuildSectorHistory(){
-  sectorHistory=[];
+// Build a sector centered at a given anchor index (used for drift).
+function sectorAtAnchor(log, anchorIdx){
+  const startIdx=((anchorIdx-Math.floor(SECTOR_SIZE/2))%N+N)%N;
+  const indices=[];
+  for(let k=0;k<SECTOR_SIZE;k++) indices.push((startIdx+k)%N);
+  const nums=indices.map(i=>WHEEL[i]);
+  const density=neighborDensityFor(log);
+  const expectedPer=uniformExpectedDensityFor(log.length);
+  const arcMean=indices.reduce((s,i)=>s+density[i],0)/SECTOR_SIZE;
+  const lift=expectedPer>0?(arcMean/expectedPer):1;
+  return {anchorIdx, startIdx, indices, nums, density, expectedPer, arcMean, lift};
+}
+
+function overlapCount(setA, setB){
+  let c=0;
+  setA.forEach(x=>{ if(setB.has(x)) c++; });
+  return c;
+}
+
+// Drift the current anchor one step toward the new-best anchor along
+// the wheel (shortest direction), wrapping correctly.
+function driftAnchorToward(currentAnchorIdx, targetAnchorIdx){
+  if(currentAnchorIdx===targetAnchorIdx) return currentAnchorIdx;
+  const forward=((targetAnchorIdx-currentAnchorIdx)%N+N)%N; // steps clockwise
+  const backward=N-forward;                                 // steps counter-clockwise
+  const step=forward<=backward?DRIFT_STEP:-DRIFT_STEP;
+  return ((currentAnchorIdx+step)%N+N)%N;
+}
+
+// Replay state from the spin log: walk spin-by-spin and reproduce the
+// timeline + final currentSector. Idempotent.
+function replay(){
+  currentSector=null;
+  timeline=[];
+  let version=0;
   for(let i=1;i<=spinLog.length;i++){
     const window=spinLog.slice(0,i);
-    if(window.length<MIN_SPINS_DISPLAY){ sectorHistory.push(null); continue; }
-    const arc=findBestArcFor(window);
-    if(!arc){ sectorHistory.push(null); continue; }
-    sectorHistory.push({
-      spin:i, anchor:arc.anchor, anchorIdx:arc.anchorIdx,
-      arcNums:arc.nums, lift:arc.lift, size:arc.size, arcHits:arc.arcHits
-    });
-  }
-}
-function appendSectorHistoryForLatest(){
-  if(spinLog.length<MIN_SPINS_DISPLAY){ sectorHistory.push(null); return; }
-  const arc=findBestArcFor(spinLog);
-  if(!arc){ sectorHistory.push(null); return; }
-  sectorHistory.push({
-    spin:spinLog.length, anchor:arc.anchor, anchorIdx:arc.anchorIdx,
-    arcNums:arc.nums, lift:arc.lift, size:arc.size, arcHits:arc.arcHits
-  });
-}
-
-function anchorsClose(a1Idx,a2Idx){
-  if(a1Idx==null||a2Idx==null)return false;
-  return wheelDist(a1Idx,a2Idx)<=ANCHOR_DRIFT_TOLERANCE;
-}
-
-function fadeOneStep(arr,refIdx){
-  if(arr.length===0)return arr;
-  let worstPos=0, worstDist=-1;
-  for(let i=0;i<arr.length;i++){
-    const idx=WHEEL_IDX[String(arr[i])];
-    const d=wheelDist(idx,refIdx);
-    if(d>worstDist){ worstDist=d; worstPos=i; }
-  }
-  const out=arr.slice();
-  out.splice(worstPos,1);
-  return out;
-}
-
-// Walk through sectorHistory and produce a per-spin phase tag, plus the final betState.
-// This single pass writes both phaseTimeline (for the chart) and the current betState.
-function replayStateMachine(){
-  let phase='idle';
-  let anchorPocket=null, anchorIdx=null;
-  let arcNums=[], fadingArcNums=[];
-  let newCandAnchor=null, newCandIdx=null, newCandArc=[], newCandStreak=0;
-  let streak=0, lastLift=0;
-  const timeline=[];
-
-  for(let i=0;i<sectorHistory.length;i++){
-    const entry=sectorHistory[i];
-    const spinNum=i+1;
-
-    if(!entry){
-      // No qualifying arc this spin
-      if(phase==='bet'){
-        phase='transition';
-        fadingArcNums=arcNums.slice();
-        arcNums=[];
-        newCandAnchor=null; newCandIdx=null; newCandArc=[]; newCandStreak=0;
-        fadingArcNums=fadeOneStep(fadingArcNums,anchorIdx);
-        if(fadingArcNums.length===0){
-          phase='idle'; anchorPocket=null; anchorIdx=null; streak=0;
-        }
-      } else if(phase==='transition'){
-        fadingArcNums=fadeOneStep(fadingArcNums,newCandIdx!=null?newCandIdx:anchorIdx);
-        if(fadingArcNums.length===0){
-          if(newCandIdx!=null){
-            phase='tracking'; anchorPocket=newCandAnchor; anchorIdx=newCandIdx;
-            arcNums=newCandArc.slice(); streak=newCandStreak;
-            newCandAnchor=null; newCandIdx=null; newCandArc=[]; newCandStreak=0;
-          } else {
-            phase='idle'; anchorPocket=null; anchorIdx=null; arcNums=[]; streak=0;
-          }
-        }
-      } else if(phase==='tracking'){
-        phase='idle'; anchorPocket=null; anchorIdx=null; arcNums=[]; streak=0;
-      }
-      lastLift=0;
-      timeline.push({spin:spinNum,phase,lift:0});
+    if(window.length<LOCK_AT){
+      timeline.push({spin:i,event:'warmup',lift:0});
       continue;
     }
-
-    lastLift=entry.lift;
-
-    if(phase==='idle'){
-      phase='tracking';
-      anchorPocket=entry.anchor; anchorIdx=entry.anchorIdx;
-      arcNums=entry.arcNums.slice();
-      streak=1;
-    } else if(phase==='tracking'){
-      if(anchorsClose(entry.anchorIdx,anchorIdx)){
-        streak++;
-        anchorPocket=entry.anchor; anchorIdx=entry.anchorIdx;
-        arcNums=entry.arcNums.slice();
-        if(spinNum>=MIN_SPINS_BET && streak>=MIN_STREAK_BET && entry.lift>=GROW_THRESHOLD){
-          phase='bet';
-        }
-      } else {
-        anchorPocket=entry.anchor; anchorIdx=entry.anchorIdx;
-        arcNums=entry.arcNums.slice();
-        streak=1;
-      }
-    } else if(phase==='bet'){
-      if(anchorsClose(entry.anchorIdx,anchorIdx)){
-        streak++;
-        anchorPocket=entry.anchor; anchorIdx=entry.anchorIdx;
-        arcNums=entry.arcNums.slice();
-      } else {
-        phase='transition';
-        fadingArcNums=arcNums.slice();
-        arcNums=[];
-        newCandAnchor=entry.anchor; newCandIdx=entry.anchorIdx;
-        newCandArc=entry.arcNums.slice(); newCandStreak=1;
-        fadingArcNums=fadeOneStep(fadingArcNums,newCandIdx);
-        if(fadingArcNums.length===0){
-          phase='tracking'; anchorPocket=newCandAnchor; anchorIdx=newCandIdx;
-          arcNums=newCandArc.slice(); streak=newCandStreak;
-          newCandAnchor=null; newCandIdx=null; newCandArc=[]; newCandStreak=0;
-        }
-      }
-    } else if(phase==='transition'){
-      if(newCandIdx!=null && anchorsClose(entry.anchorIdx,newCandIdx)){
-        newCandStreak++;
-        newCandAnchor=entry.anchor; newCandIdx=entry.anchorIdx;
-        newCandArc=entry.arcNums.slice();
-        if(spinNum>=MIN_SPINS_BET && newCandStreak>=MIN_STREAK_BET && entry.lift>=GROW_THRESHOLD){
-          phase='bet';
-          anchorPocket=newCandAnchor; anchorIdx=newCandIdx;
-          arcNums=newCandArc.slice(); streak=newCandStreak;
-          fadingArcNums=[]; newCandAnchor=null; newCandIdx=null; newCandArc=[]; newCandStreak=0;
-        } else {
-          fadingArcNums=fadeOneStep(fadingArcNums,newCandIdx);
-          if(fadingArcNums.length===0){
-            phase='tracking';
-            anchorPocket=newCandAnchor; anchorIdx=newCandIdx;
-            arcNums=newCandArc.slice(); streak=newCandStreak;
-            newCandAnchor=null; newCandIdx=null; newCandArc=[]; newCandStreak=0;
-          }
-        }
-      } else if(anchorsClose(entry.anchorIdx,anchorIdx)){
-        phase='bet';
-        anchorPocket=entry.anchor; anchorIdx=entry.anchorIdx;
-        arcNums=entry.arcNums.slice();
-        streak++; fadingArcNums=[];
-        newCandAnchor=null; newCandIdx=null; newCandArc=[]; newCandStreak=0;
-      } else {
-        newCandAnchor=entry.anchor; newCandIdx=entry.anchorIdx;
-        newCandArc=entry.arcNums.slice(); newCandStreak=1;
-        fadingArcNums=fadeOneStep(fadingArcNums,newCandIdx);
-        if(fadingArcNums.length===0){
-          phase='tracking'; anchorPocket=newCandAnchor; anchorIdx=newCandIdx;
-          arcNums=newCandArc.slice(); streak=newCandStreak;
-          newCandAnchor=null; newCandIdx=null; newCandArc=[]; newCandStreak=0;
-        }
-      }
+    if(window.length===LOCK_AT || currentSector===null){
+      // Lock the initial (or recovered) sector to the best 9-window
+      const best=bestArcWindow(window);
+      if(!best){ timeline.push({spin:i,event:'warmup',lift:0}); continue; }
+      version++;
+      currentSector={
+        anchorIdx:best.anchorIdx,
+        startIdx:best.startIdx,
+        indices:best.indices.slice(),
+        nums:best.nums.slice(),
+        lift:best.lift,
+        version
+      };
+      timeline.push({spin:i,event:'lock',lift:best.lift});
+      continue;
     }
-    timeline.push({spin:spinNum,phase,lift:entry.lift});
+    // Have a sector. Recompute best on full history and decide hold/drift/swap.
+    const best=bestArcWindow(window);
+    if(!best){ timeline.push({spin:i,event:'hold',lift:currentSector.lift}); continue; }
+    const currentSet=new Set(currentSector.indices);
+    const bestSet=new Set(best.indices);
+    const overlap=overlapCount(currentSet,bestSet);
+    if(best.anchorIdx===currentSector.anchorIdx){
+      // Sector unchanged
+      const updated=sectorAtAnchor(window,currentSector.anchorIdx);
+      currentSector={...currentSector,...updated,version:currentSector.version};
+      timeline.push({spin:i,event:'hold',lift:updated.lift});
+    } else if(overlap>=DRIFT_OVERLAP_MIN){
+      // Drift one step toward new best
+      const newAnchor=driftAnchorToward(currentSector.anchorIdx,best.anchorIdx);
+      const updated=sectorAtAnchor(window,newAnchor);
+      const isMoving=(newAnchor!==currentSector.anchorIdx);
+      currentSector={...currentSector,...updated,version:currentSector.version};
+      timeline.push({spin:i,event:isMoving?'drift':'hold',lift:updated.lift});
+    } else {
+      // Overlap too low — full swap
+      version++;
+      currentSector={
+        anchorIdx:best.anchorIdx,
+        startIdx:best.startIdx,
+        indices:best.indices.slice(),
+        nums:best.nums.slice(),
+        lift:best.lift,
+        version
+      };
+      timeline.push({spin:i,event:'swap',lift:best.lift});
+    }
   }
+}
 
-  betState={phase,anchorPocket,anchorIdx,arcNums,fadingArcNums,newCandidateAnchor:newCandAnchor,newCandidateAnchorIdx:newCandIdx,newCandidateArcNums:newCandArc,newCandidateStreak:newCandStreak,streak,lastLift};
-  phaseTimeline=timeline;
+function liftCategory(lift){
+  if(lift>=STRONG_LIFT) return 'strong';
+  if(lift>=WEAK_LIFT) return 'weak';
+  return 'noise';
+}
+function liftLabel(lift){
+  if(lift>=STRONG_LIFT) return 'Strong';
+  if(lift>=WEAK_LIFT) return 'Weak';
+  return 'Noise';
 }
 
 function highlightWheel(){
-  document.querySelectorAll('.nb').forEach(b=>{ b.classList.remove('arc-hot','bet-on'); });
-  const arc=findBestArc();
-  if(arc){
-    arc.nums.forEach(n=>{
-      const b=document.getElementById('nb-'+String(n));
-      if(b)b.classList.add('arc-hot');
-    });
-  }
-  if(betState.phase==='bet'||betState.phase==='transition'){
-    const betPockets=[...(betState.arcNums||[]),...(betState.fadingArcNums||[])];
-    betPockets.forEach(n=>{
-      const b=document.getElementById('nb-'+String(n));
-      if(b){ b.classList.remove('arc-hot'); b.classList.add('bet-on'); }
-    });
-  }
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('bet-on'));
+  if(!currentSector) return;
+  currentSector.nums.forEach(n=>{
+    const b=document.getElementById('nb-'+String(n));
+    if(b) b.classList.add('bet-on');
+  });
 }
 
-function renderStreakChart(){
-  const recent=phaseTimeline.slice(-STREAK_CHART_SPINS);
-  const padCount=Math.max(0,STREAK_CHART_SPINS-recent.length);
+function renderLiftChart(){
+  const SHOW=60;
+  const recent=timeline.slice(-SHOW);
+  const padCount=Math.max(0,SHOW-recent.length);
   const bars=[];
-  for(let i=0;i<padCount;i++) bars.push({phase:'none',lift:0,empty:true});
-  recent.forEach(p=>bars.push({phase:p.phase,lift:p.lift,empty:false}));
-  const maxLift=2.5;
+  for(let i=0;i<padCount;i++) bars.push({event:'pad',lift:0,empty:true});
+  recent.forEach(t=>bars.push({event:t.event,lift:t.lift,empty:false}));
+  const maxLift=2.0;
   const html=bars.map(b=>{
-    const cls=b.empty?'none':(b.phase==='bet'?'bet':b.phase==='transition'?'trans':b.phase==='tracking'?'tracking':'none');
+    let cls='noise';
+    if(b.empty) cls='noise';
+    else if(b.event==='warmup') cls='noise';
+    else if(b.event==='drift') cls='drift';
+    else if(b.event==='swap') cls='swap';
+    else cls=liftCategory(b.lift);
     const heightPct=b.empty?6:Math.max(8,Math.min(100,(b.lift/maxLift)*100));
-    return `<div class="streak-bar ${cls}" style="height:${heightPct}%;"></div>`;
+    return `<div class="lift-bar ${cls}" style="height:${heightPct}%;"></div>`;
   }).join('');
-  return `<div class="streak-chart">${html}</div>
-    <div class="streak-legend">
-      <span><span class="streak-legend-dot" style="background:var(--green);"></span>Bet active</span>
-      <span><span class="streak-legend-dot" style="background:var(--purple);"></span>Transition</span>
-      <span><span class="streak-legend-dot" style="background:var(--amber);"></span>Tracking</span>
-      <span><span class="streak-legend-dot" style="background:#252525;"></span>No signal</span>
+  return `<div class="lift-chart">${html}</div>
+    <div class="lift-legend">
+      <span><span class="lift-legend-dot" style="background:var(--green);"></span>Strong</span>
+      <span><span class="lift-legend-dot" style="background:var(--amber);"></span>Drift / weak</span>
+      <span><span class="lift-legend-dot" style="background:var(--purple);"></span>Swap</span>
+      <span><span class="lift-legend-dot" style="background:#2a2a2a;"></span>Warmup</span>
     </div>`;
+}
+
+function sectorHitsInLog(){
+  if(!currentSector) return {hits:0,rate:0};
+  const since=Math.max(0,LOCK_AT-1); // hits within the locked sector in spins from lock onward
+  const relevant=spinLog.slice(since);
+  const set=new Set(currentSector.nums.map(String));
+  let hits=0;
+  relevant.forEach(n=>{ if(set.has(String(n))) hits++; });
+  return {hits, rate:relevant.length>0?hits/relevant.length:0, total:relevant.length};
+}
+
+function lastEvent(){
+  for(let i=timeline.length-1;i>=0;i--){
+    const e=timeline[i].event;
+    if(e==='lock'||e==='drift'||e==='swap') return {idx:i,event:e};
+  }
+  return null;
 }
 
 function renderPlays(){
   const el=document.getElementById('playsBody');
-  if(totalSpins<MIN_SPINS_DISPLAY){
-    highlightWheel();
-    el.innerHTML=`<div class="no-signal">Log at least ${MIN_SPINS_DISPLAY} spins<br>to compute neighbor density.<br><br>${totalSpins} / ${MIN_SPINS_DISPLAY} logged</div>`;
+  if(totalSpins<LOCK_AT){
+    const remaining=LOCK_AT-totalSpins;
+    el.innerHTML=`<div class="no-signal">Log <b style="color:var(--amber);">${remaining}</b> more spin${remaining===1?'':'s'} to lock<br>your first 9-pocket sector.<br><br>${totalSpins} / ${LOCK_AT} logged</div>`;
     return;
   }
-  highlightWheel();
-  const arc=findBestArc();
-  const phase=betState.phase;
-  const streak=betState.streak||0;
+  if(!currentSector) return;
 
-  let streakNumCls='none';
-  let streakSub='';
-  let displayStreak=streak;
-  if(phase==='bet'){
-    streakNumCls=''; streakSub=`spins · betting active`;
-  } else if(phase==='transition'){
-    displayStreak=betState.newCandidateStreak||0;
-    streakNumCls='below'; streakSub=`new candidate / ${MIN_STREAK_BET} bet · fading old sector`;
-  } else if(phase==='tracking'){
-    streakNumCls=streak>=MIN_STREAK_BET?'':'below';
-    const remaining=Math.max(0,MIN_STREAK_BET-streak);
-    streakSub=remaining>0?`spins · ${remaining} more to trigger`:`spins · awaiting lift threshold`;
-  } else {
-    streakNumCls='none'; streakSub=`spins · no sector held`;
-  }
-  const streakHtml=`<div class="streak-card">
-    <div class="streak-header">
-      <div class="streak-label">Sector persistence</div>
+  highlightWheel();
+
+  const lift=currentSector.lift;
+  const cat=liftCategory(lift);
+  const catLabel=liftLabel(lift);
+  const evt=lastEvent();
+  const evtType=evt?evt.event:'lock';
+  const spinsSinceEvent=evt?(timeline.length-evt.idx-1):0;
+
+  // Strength meter
+  const meterPct=Math.max(0,Math.min(100,((lift-0.8)/(1.6-0.8))*100));
+  const strengthHtml=`<div class="strength-card">
+    <div class="strength-header">
+      <div class="strength-label">Trend strength</div>
       <div>
-        <span class="streak-num ${streakNumCls}">${displayStreak}</span><span class="streak-sub">${streakSub}</span>
+        <span class="strength-num ${cat}">${lift.toFixed(2)}×</span><span class="strength-sub">${catLabel} (vs uniform)</span>
       </div>
     </div>
-    ${renderStreakChart()}
+    <div class="strength-bar-wrap"><div class="strength-bar-fill ${cat}" style="width:${meterPct}%;"></div></div>
+    <div class="strength-bar-marks"><span>0.8×</span><span>1.05×</span><span>1.25×</span><span>1.6×</span></div>
   </div>`;
 
-  let cardHtml='';
-  if(phase==='bet'){
-    const chips=betState.arcNums.map(n=>`<span class="arc-chip ${numColor(n)}">${escapeHtml(n)}</span>`).join('');
-    cardHtml=`<div class="arc-card active-bet">
-      <div class="arc-title">Active Bet Sector<span class="arc-status-pill bet">Bet</span></div>
-      <div class="arc-meta">
-        Anchor <b>${escapeHtml(betState.anchorPocket)}</b> · ${betState.arcNums.length}-pocket arc · streak <b>${streak}</b> spins · lift <b>${betState.lastLift.toFixed(2)}×</b>
-      </div>
-      <div class="arc-chips">${chips}</div>
-      <div class="arc-instruction">Place <b>1 chip straight up</b> on each pocket above (${betState.arcNums.length} units total).</div>
-    </div>`;
-  } else if(phase==='transition'){
-    const fadingSet=new Set(betState.fadingArcNums.map(String));
-    const fadingChips=betState.fadingArcNums.map(n=>`<span class="arc-chip ${numColor(n)} fading">${escapeHtml(n)}</span>`).join('');
-    const newChips=(betState.newCandidateArcNums||[]).filter(n=>!fadingSet.has(String(n)))
-      .map(n=>`<span class="arc-chip ${numColor(n)} new-add">${escapeHtml(n)}</span>`).join('');
-    const newStreak=betState.newCandidateStreak||0;
-    cardHtml=`<div class="arc-card transition">
-      <div class="arc-title">Transitioning<span class="arc-status-pill trans">Trans</span></div>
-      <div class="arc-meta">
-        Old anchor <b>${escapeHtml(betState.anchorPocket)}</b> fading (${betState.fadingArcNums.length} pockets remaining)<br>
-        ${betState.newCandidateAnchor!=null?`New anchor <b>${escapeHtml(betState.newCandidateAnchor)}</b> · streak <b>${newStreak}</b> / ${MIN_STREAK_BET}`:'No clear successor yet.'}
-      </div>
-      <div class="arc-chips">${fadingChips}${newChips}</div>
-      <div class="arc-instruction">Continue chips on faded pockets only. Bordered pockets are the incoming candidate — <b>do not bet</b> until its streak qualifies.</div>
-    </div>`;
-  } else if(phase==='tracking' && arc){
-    const chips=arc.nums.map(n=>`<span class="arc-chip ${numColor(n)}">${escapeHtml(n)}</span>`).join('');
-    const remaining=Math.max(0,MIN_STREAK_BET-streak);
-    const need=[];
-    if(totalSpins<MIN_SPINS_BET) need.push(`${MIN_SPINS_BET-totalSpins} more spins`);
-    if(remaining>0) need.push(`${remaining} more streak`);
-    if(arc.lift<GROW_THRESHOLD) need.push(`lift ≥ ${GROW_THRESHOLD.toFixed(2)}×`);
-    const needTxt=need.length?need.join(' + '):'all gates met — bet activates next qualifying spin';
-    cardHtml=`<div class="arc-card">
-      <div class="arc-title">Tracking Sector<span class="arc-status-pill tracking">Track</span></div>
-      <div class="arc-meta">
-        Anchor <b>${escapeHtml(arc.anchor)}</b> · ${arc.arcHits} of ${totalSpins} spins in arc (<b>${(arc.arcHitRate*100).toFixed(1)}%</b>, expected ${(arc.expectedRate*100).toFixed(1)}%)<br>
-        Streak <b>${streak}</b> · lift <b>${arc.lift.toFixed(2)}×</b> · bias <b>+${arc.biasPct.toFixed(1)}pp</b>
-      </div>
-      <div class="arc-chips">${chips}</div>
-      <div class="arc-instruction no-bet">Sector identified but <b>not yet bet-worthy</b>. Needs: ${needTxt}.</div>
-    </div>`;
+  // Lift chart
+  const chartHtml=`<div class="lift-chart-card">
+    <div class="strength-label" style="margin-bottom:8px;">Per-spin trend (last 60)</div>
+    ${renderLiftChart()}
+  </div>`;
+
+  // Main sector card
+  const cardClass=evtType==='swap'?'swapped':(evtType==='drift'?'drifted':'');
+  const pillClass=evtType==='swap'?'swap':(evtType==='drift'?'drift':'hold');
+  const titleText=evtType==='swap'?'Sector Swapped':(evtType==='drift'?'Sector Drifting':'Current Sector');
+  const pillText=evtType==='swap'?'Swap':(evtType==='drift'?'Drift':'Hold');
+  const anchorNum=WHEEL[currentSector.anchorIdx];
+  const stats=sectorHitsInLog();
+  const hitRatePct=(stats.rate*100).toFixed(1);
+  const baselinePct=(BASELINE_RATE*100).toFixed(1);
+  const sinceTxt=evtType==='lock'?`locked ${spinsSinceEvent+1} spin${spinsSinceEvent===0?'':'s'} ago`:`${spinsSinceEvent} spin${spinsSinceEvent===1?'':'s'} since ${evtType}`;
+  const chips=currentSector.nums.map(n=>{
+    const isAnchor=WHEEL_IDX[String(n)]===currentSector.anchorIdx;
+    return `<span class="arc-chip ${numColor(n)}${isAnchor?' anchor-mark':''}">${escapeHtml(n)}</span>`;
+  }).join('');
+
+  let instruction='';
+  if(cat==='strong'){
+    instruction=`Trend is <b>strong</b>. Place <b>1 chip straight up</b> on each pocket above (${SECTOR_SIZE} units total).`;
+  } else if(cat==='weak'){
+    instruction=`Trend is <b>weak</b>. Sector identified but lift only ${lift.toFixed(2)}× — consider partial stakes or skip until ${STRONG_LIFT.toFixed(2)}×.`;
   } else {
-    cardHtml=`<div class="no-signal">No sector currently held.<br>Bet trigger needs ${MIN_SPINS_BET}+ spins, ${MIN_STREAK_BET}+ stable streak, ${GROW_THRESHOLD.toFixed(2)}× lift.</div>`;
+    instruction=`Lift is below ${WEAK_LIFT.toFixed(2)}× — distribution looks near-random. Sector shown for continuity; conservative play recommended.`;
   }
 
-  let densityHtml='';
-  if(arc){
-    densityHtml=renderDensityList(arc.density,arc.expectedPer,new Set(arc.nums.map(String)));
-  } else {
-    const density=neighborDensityFor(spinLog);
-    const expectedPer=uniformExpectedDensityFor(totalSpins);
-    densityHtml=renderDensityList(density,expectedPer,new Set());
-  }
+  const cardHtml=`<div class="arc-card ${cardClass}">
+    <div class="arc-title">${titleText}<span class="arc-status-pill ${pillClass}">${pillText}</span></div>
+    <div class="arc-meta">
+      Anchor <b>${escapeHtml(anchorNum)}</b> · ${sinceTxt}<br>
+      Sector hits since lock: <b>${stats.hits}/${stats.total}</b> = <b>${hitRatePct}%</b> (baseline ${baselinePct}%)
+    </div>
+    <div class="arc-chips">${chips}</div>
+    <div class="arc-instruction">${instruction}</div>
+  </div>`;
 
-  el.innerHTML=streakHtml+cardHtml+densityHtml;
+  // Density list — top 12 pockets by smoothed neighbor density
+  const density=neighborDensityFor(spinLog);
+  const expectedPer=uniformExpectedDensityFor(totalSpins);
+  const arcSet=new Set(currentSector.nums.map(String));
+  const densityHtml=renderDensityList(density,expectedPer,arcSet);
+
+  el.innerHTML=strengthHtml+chartHtml+cardHtml+densityHtml;
 }
 
 function renderDensityList(density,expectedPer,arcSet){
@@ -807,7 +721,7 @@ function renderDensityList(density,expectedPer,arcSet){
   let html='<div class="density-label">Top 12 neighbor-density pockets</div><div class="density-list">';
   ranked.forEach(r=>{
     const pct=(r.d/maxD)*100;
-    const lift=(r.d/expectedPer).toFixed(2);
+    const lift=expectedPer>0?(r.d/expectedPer).toFixed(2):'—';
     const inArc=arcSet.has(String(r.n));
     html+=`<div class="density-row">
       <div class="density-pocket ${numColor(r.n)}">${escapeHtml(r.n)}</div>
@@ -819,21 +733,20 @@ function renderDensityList(density,expectedPer,arcSet){
   return html;
 }
 
-function renderLandscapeBoard(activeSet,fadingSet){
+function renderLandscapeBoard(activeSet){
   const active=activeSet||new Set();
-  const fading=fadingSet||new Set();
   function cellNum(n,col,row){
     const key=String(n);
     let cls='';
     if(active.has(key)) cls=' bet-active';
-    else if(fading.has(key)) cls=' bet-fading';
     return `<div class="lc ${numColor(n)}${cls}" style="grid-column:${col};grid-row:${row};">${n}</div>`;
   }
   const row1=[3,6,9,12,15,18,21,24,27,30,33,36];
   const row2=[2,5,8,11,14,17,20,23,26,29,32,35];
   const row3=[1,4,7,10,13,16,19,22,25,28,31,34];
   let html='<div class="landscape-board">';
-  html+=`<div class="lc green zero-cell" style="grid-column:1;grid-row:1/4;">0<br>00</div>`;
+  const zeroActive=active.has('0')||active.has('00');
+  html+=`<div class="lc green-pkt zero-cell${zeroActive?' bet-active':''}" style="grid-column:1;grid-row:1/4;">0<br>00</div>`;
   row1.forEach((n,i)=>html+=cellNum(n,i+2,1));
   row2.forEach((n,i)=>html+=cellNum(n,i+2,2));
   row3.forEach((n,i)=>html+=cellNum(n,i+2,3));
@@ -856,45 +769,26 @@ function renderTable(){
   const summaryEl=document.getElementById('tableSummary');
   const pocketsEl=document.getElementById('tablePockets');
   const boardEl=document.getElementById('tableBoardWrap');
-  if(totalSpins<MIN_SPINS_DISPLAY){
+  if(totalSpins<LOCK_AT||!currentSector){
+    const remaining=LOCK_AT-totalSpins;
     summaryEl.innerHTML='';
     pocketsEl.innerHTML='';
-    boardEl.innerHTML=`<div class="no-signal">Log at least ${MIN_SPINS_DISPLAY} spins<br>to show table placements.</div>`;
+    boardEl.innerHTML=`<div class="no-signal">Log ${remaining>0?remaining+' more':''} spin${remaining===1?'':'s'}<br>to show table placements.</div>`;
     return;
   }
-  const phase=betState.phase;
-  const streak=betState.streak||0;
-  if(phase==='bet'){
-    summaryEl.innerHTML=`<div class="tbl-status bet-active">
-      <span>BET · anchor <b>${escapeHtml(betState.anchorPocket)}</b> · streak <b>${streak}</b> · lift <b>${betState.lastLift.toFixed(2)}×</b></span>
-      <span><b>${betState.arcNums.length}u</b></span>
-    </div>`;
-    const pills=betState.arcNums.map(n=>`<div class="tbl-pocket ${numColor(n)} bet-active">${escapeHtml(n)}</div>`).join('');
-    pocketsEl.innerHTML=`<div class="tbl-pockets">${pills}</div>`;
-    boardEl.innerHTML=renderLandscapeBoard(new Set(betState.arcNums.map(String)),new Set());
-  } else if(phase==='transition'){
-    const fadingCount=betState.fadingArcNums.length;
-    const newStreak=betState.newCandidateStreak||0;
-    summaryEl.innerHTML=`<div class="tbl-status transition">
-      <span>TRANS · fading <b>${fadingCount}p</b> · new streak <b>${newStreak}/${MIN_STREAK_BET}</b></span>
-      <span><b>${fadingCount}u</b></span>
-    </div>`;
-    const fadingPills=betState.fadingArcNums.map(n=>`<div class="tbl-pocket ${numColor(n)} fading">${escapeHtml(n)}</div>`).join('');
-    pocketsEl.innerHTML=`<div class="tbl-pockets">${fadingPills}</div>`;
-    boardEl.innerHTML=renderLandscapeBoard(new Set(),new Set(betState.fadingArcNums.map(String)));
-  } else if(phase==='tracking'){
-    const arc=findBestArc();
-    summaryEl.innerHTML=`<div class="tbl-status">
-      <span>TRACKING · anchor <b>${escapeHtml(arc?arc.anchor:betState.anchorPocket)}</b> · streak <b>${streak}/${MIN_STREAK_BET}</b> · lift <b>${(arc?arc.lift:betState.lastLift).toFixed(2)}×</b> · <b>no bet yet</b></span>
-      <span><b>0u</b></span>
-    </div>`;
-    pocketsEl.innerHTML='';
-    boardEl.innerHTML=renderLandscapeBoard(new Set(),new Set());
-  } else {
-    summaryEl.innerHTML='<div class="tbl-status no-arc">No sector currently held — keep logging.</div>';
-    pocketsEl.innerHTML='';
-    boardEl.innerHTML=renderLandscapeBoard(new Set(),new Set());
-  }
+  const evt=lastEvent();
+  const evtType=evt?evt.event:'lock';
+  const statusCls=evtType==='swap'?'swapped':(evtType==='drift'?'drifted':'');
+  const evtLabel=evtType==='swap'?'SWAP':(evtType==='drift'?'DRIFT':'HOLD');
+  const lift=currentSector.lift;
+  const anchorNum=WHEEL[currentSector.anchorIdx];
+  summaryEl.innerHTML=`<div class="tbl-status ${statusCls}">
+    <span>${evtLabel} · anchor <b>${escapeHtml(anchorNum)}</b> · lift <b>${lift.toFixed(2)}×</b> (${liftLabel(lift).toLowerCase()})</span>
+    <span><b>${SECTOR_SIZE}u</b></span>
+  </div>`;
+  const pills=currentSector.nums.map(n=>`<div class="tbl-pocket ${numColor(n)}">${escapeHtml(n)}</div>`).join('');
+  pocketsEl.innerHTML=`<div class="tbl-pockets">${pills}</div>`;
+  boardEl.innerHTML=renderLandscapeBoard(new Set(currentSector.nums.map(String)));
 }
 
 function randomFrom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
@@ -912,8 +806,7 @@ function batchLog(nums){
   totalSpins=spinLog.length;
   currentInput='';
   restoreHitMarkers();
-  rebuildSectorHistory();
-  replayStateMachine();
+  replay();
   saveState();
   updateDisplay();
   updateAll();
@@ -946,8 +839,7 @@ function logNum(n){
   totalSpins=spinLog.length;
   const b=document.getElementById('nb-'+String(normalized));
   if(b)b.classList.add('hit');
-  appendSectorHistoryForLatest();
-  replayStateMachine();
+  replay();
   saveState();
   updateAll();
 }
@@ -955,9 +847,8 @@ function undoLast(){
   if(spinLog.length===0)return;
   spinLog.pop();
   totalSpins=spinLog.length;
-  sectorHistory.pop();
   restoreHitMarkers();
-  replayStateMachine();
+  replay();
   saveState();
   updateAll();
 }
@@ -990,7 +881,9 @@ function updateDisplay(){
   if(value===null){
     el.className='num-display-val'; lbl.textContent='invalid'; logBtn.classList.add('disabled');
   }else{
-    el.className='num-display-val '+numColor(value)+'-num';
+    const color=numColor(value).replace('-pkt','');
+    el.className='num-display-val '+color+'-num';
+    if(numColor(value)==='green-pkt') el.className='num-display-val green-num';
     lbl.textContent=numLabel(value);
     logBtn.classList.remove('disabled');
   }
@@ -999,12 +892,14 @@ function updateDisplay(){
 function updateHistory(){
   const el=document.getElementById('histTable');
   if(!el)return;
+  const sectorSet=currentSector?new Set(currentSector.nums.map(String)):new Set();
   const recent=[...spinLog].reverse().slice(0,20);
   const cells=[];
   for(let i=0;i<20;i++){
     if(i<recent.length){
       const n=recent[i];
-      cells.push(`<div class="hist-cell ${numColor(n)}${i===0?' newest':''}">${n}</div>`);
+      const inSec=sectorSet.has(String(n));
+      cells.push(`<div class="hist-cell ${numColor(n)}${i===0?' newest':''}${inSec?' in-sector':''}">${n}</div>`);
     }else{
       cells.push(`<div class="hist-cell empty"></div>`);
     }
@@ -1014,9 +909,18 @@ function updateHistory(){
 
 function updateStats(){
   document.getElementById('totalSpins').textContent=totalSpins;
-  const seen=new Set(spinLog.map(String));
-  document.getElementById('uniqueNums').textContent=seen.size;
   document.getElementById('spinBadge').textContent=totalSpins+' spin'+(totalSpins===1?'':'s');
+  // Sector hit rate (since lock)
+  const hitEl=document.getElementById('sectorHitRate');
+  const subEl=document.getElementById('sectorHitSub');
+  if(currentSector){
+    const stats=sectorHitsInLog();
+    hitEl.textContent=(stats.rate*100).toFixed(1)+'%';
+    subEl.textContent=`${stats.hits}/${stats.total} · base ${(BASELINE_RATE*100).toFixed(1)}%`;
+  } else {
+    hitEl.textContent='—';
+    subEl.textContent=`vs ${(BASELINE_RATE*100).toFixed(1)}% baseline`;
+  }
   if(totalSpins>0){
     const raw={};
     ALL.forEach(n=>raw[String(n)]=0);
@@ -1037,14 +941,11 @@ function renderWheelOrder(){
   const wo=document.getElementById('wheelOrder');
   if(!wo)return;
   wo.innerHTML='';
-  const arc=findBestArc();
-  const arcSet=arc?new Set(arc.nums.map(String)):new Set();
-  const betSet=(betState.phase==='bet'||betState.phase==='transition')?new Set([...(betState.arcNums||[]),...(betState.fadingArcNums||[])].map(String)):new Set();
+  const sectorSet=currentSector?new Set(currentSector.nums.map(String)):new Set();
   WHEEL.forEach(n=>{
     const pill=document.createElement('span');
     let cls='wo-pill '+numColor(n);
-    if(betSet.has(String(n))) cls+=' bet-on';
-    else if(arcSet.has(String(n))) cls+=' in-arc';
+    if(sectorSet.has(String(n))) cls+=' bet-on';
     pill.className=cls;
     pill.textContent=String(n);
     wo.appendChild(pill);
@@ -1055,17 +956,19 @@ function updateAll(){
   updateStats(); updateHistory(); updateSimStatus();
   renderPlays(); renderTable();
   renderWheelOrder();
+  highlightWheel();
 }
 
 function resetAll(){
   spinLog=[]; totalSpins=0; currentInput=''; lastSimStatus='';
-  sectorHistory=[]; phaseTimeline=[];
-  betState={phase:'idle',anchorPocket:null,anchorIdx:null,arcNums:[],fadingArcNums:[],newCandidateAnchor:null,newCandidateAnchorIdx:null,newCandidateArcNums:[],newCandidateStreak:0,streak:0,lastLift:0};
+  currentSector=null; timeline=[];
   try{
     localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem(STORAGE_HISTORY_KEY);
+    localStorage.removeItem(STORAGE_SECTOR);
+    localStorage.removeItem(STORAGE_TIMELINE);
+    localStorage.removeItem(STORAGE_HIST);
   }catch(e){}
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('hit','arc-hot','bet-on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('hit','bet-on'));
   updateDisplay(); updateAll();
 }
 
@@ -1094,11 +997,7 @@ function setTab(name){
 
 buildWheel();
 loadState();
-if(spinLog.length>0 && sectorHistory.length!==spinLog.length){
-  rebuildSectorHistory();
-  saveState();
-}
-replayStateMachine();
+replay();
 updateDisplay();
 updateAll();
 </script>
